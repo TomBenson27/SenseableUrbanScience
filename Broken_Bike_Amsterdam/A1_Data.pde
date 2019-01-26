@@ -5,7 +5,7 @@ JSONObject wholeArea;
 
 void loadData(){
   /* Load and resize background image */
-  background = loadImage("data/background.png");
+  background = loadImage("exampledata.PNG");
   background.resize(width, height);
   
   /* Small example area */
@@ -13,7 +13,7 @@ void loadData(){
   //features = example.getJSONArray("features");
   
   /* Whole Area */
-  wholeArea = loadJSONObject("data/wholeArea.json");
+  wholeArea = loadJSONObject("exampledata.json");
   features = wholeArea.getJSONArray("features");
   
   println("There are : ", features.size(), " features."); 

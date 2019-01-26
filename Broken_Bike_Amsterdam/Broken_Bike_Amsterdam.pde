@@ -50,7 +50,7 @@ void setup() {
   size(1000, 650);
   
   /* Intiailize your data structures early in setup */
-  map = new MercatorMap(width, height, 42.3636, 42.3557, -71.1034, -71.0869, 0);
+  map = new MercatorMap(width, height, 52.3722, 52.3649, 4.8893, 4.8694, 0);
   polygons = new ArrayList<Polygon>();
   ways = new ArrayList<Way>();
   pois = new ArrayList<POI>();
@@ -61,8 +61,8 @@ void setup() {
   
   /* Step 1: Initialize Network Using ONLY ONE of these methods */
   //randomNetwork(0.5); // a number between 0.0 and 1.0 specifies how 'porous' the network is
-  //waysNetwork(ways);
-  randomNetworkMinusBuildings(0.1, polygons); // a number between 0.0 and 1.0 specifies how 'porous' the network is
+  waysNetwork(ways);
+  //randomNetworkMinusBuildings(0.1, polygons); // a number between 0.0 and 1.0 specifies how 'porous' the network is
   
   /* Step 2: Initialize Paths Using ONLY ONE of these methods */
   //randomPaths();
