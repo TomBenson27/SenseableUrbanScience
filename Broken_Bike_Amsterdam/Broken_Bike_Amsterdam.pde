@@ -50,7 +50,7 @@ void setup() {
   size(1000, 650);
   
   /* Intiailize your data structures early in setup */
-  map = new MercatorMap(width, height, 52.3722, 52.3649, 4.8893, 4.8694, 0);
+  map = new MercatorMap(width, height, 52.3722, 52.3649, 4.8694, 4.8893, 0);
   polygons = new ArrayList<Polygon>();
   ways = new ArrayList<Way>();
   pois = new ArrayList<POI>();

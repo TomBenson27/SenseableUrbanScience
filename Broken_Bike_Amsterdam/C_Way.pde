@@ -2,14 +2,20 @@ class Way{
   //Coordinates and color variables
   ArrayList<PVector>coordinates;
   color stroke;
+  String waterway;
   
   //Empty constructor
   Way(){}
   
   //Constructor of coordinates
-  Way(ArrayList<PVector> coords){
+  Way(ArrayList<PVector> coords, String waterway){
     coordinates =  coords;
+    
+    if(waterway!=null && waterway.equals("canal")){
     stroke = color(0, 0, 255);
+    }
+    else stroke = color(255, 255, 255);
+    
   }
   
   //Draw the road

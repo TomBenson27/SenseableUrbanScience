@@ -29,6 +29,7 @@ void parseData(){
     String type = features.getJSONObject(i).getJSONObject("geometry").getString("type");
     JSONObject geometry = features.getJSONObject(i).getJSONObject("geometry");
     JSONObject properties =  features.getJSONObject(i).getJSONObject("properties");
+    String waterway = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("waterway");
     
     //Make POIs if it's a point
     if(type.equals("Point")){
@@ -69,7 +70,7 @@ void parseData(){
         coords.add(coordinate);
       }
       //Create the Way with the coordinate PVectors
-      Way way = new Way(coords);
+      Way way = new Way(coords, waterway);
       ways.add(way);
     }
     
@@ -77,14 +78,15 @@ void parseData(){
 }
 
 void drawGISObjects() {
-  /* Draw all the ways (roads, sidewalks, etc) */
-  for(int i = 0; i<ways.size(); i++){
-    ways.get(i).draw();
-  }
   
   /* Draw all polygons */ 
   for(int i = 0; i<polygons.size(); i++){
     polygons.get(i).draw();
+  }
+  
+   /* Draw all the ways (roads, sidewalks, etc) */
+  for(int i = 0; i<ways.size(); i++){
+    ways.get(i).draw();
   }
 
   /* Draw all POIs */
