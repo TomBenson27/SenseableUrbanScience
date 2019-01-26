@@ -44,6 +44,7 @@ PImage background;
 // Declare GIS-style Objects
 ArrayList<POI> pois;
 ArrayList<Way> ways; 
+ArrayList<Way> water;
 ArrayList<Polygon> polygons;
 
 void setup() {
@@ -53,6 +54,7 @@ void setup() {
   map = new MercatorMap(width, height, 52.3722, 52.3649, 4.8694, 4.8893, 0);
   polygons = new ArrayList<Polygon>();
   ways = new ArrayList<Way>();
+  water = new ArrayList<Way>();
   pois = new ArrayList<POI>();
   
   /* Load in and parse your data in setup -- don't want to do this every frame! */
@@ -61,7 +63,7 @@ void setup() {
   
   /* Step 1: Initialize Network Using ONLY ONE of these methods */
   //randomNetwork(0.5); // a number between 0.0 and 1.0 specifies how 'porous' the network is
-  waysNetwork(ways);
+  waysNetwork(water);
   //randomNetworkMinusBuildings(0.1, polygons); // a number between 0.0 and 1.0 specifies how 'porous' the network is
   
   /* Step 2: Initialize Paths Using ONLY ONE of these methods */

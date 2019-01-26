@@ -71,7 +71,11 @@ void parseData(){
       }
       //Create the Way with the coordinate PVectors
       Way way = new Way(coords, waterway);
-      ways.add(way);
+      if(waterway!=null && waterway.equals("canal")){
+        water.add(way);
+      }
+      else
+            ways.add(way);
     }
     
   }
@@ -87,6 +91,9 @@ void drawGISObjects() {
    /* Draw all the ways (roads, sidewalks, etc) */
   for(int i = 0; i<ways.size(); i++){
     ways.get(i).draw();
+  }
+    for(int i = 0; i<water.size(); i++){
+    water.get(i).draw();
   }
 
   /* Draw all POIs */
