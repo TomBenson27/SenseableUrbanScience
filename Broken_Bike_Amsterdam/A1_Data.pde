@@ -30,6 +30,8 @@ void parseData(){
     JSONObject geometry = features.getJSONObject(i).getJSONObject("geometry");
     JSONObject properties =  features.getJSONObject(i).getJSONObject("properties");
     String waterway = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("waterway");
+    String shop = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("shop"); 
+    println(shop);
     
     //Make POIs if it's a point
     if(type.equals("Point")){
@@ -37,7 +39,10 @@ void parseData(){
       float lat = geometry.getJSONArray("coordinates").getFloat(1);
       float lon = geometry.getJSONArray("coordinates").getFloat(0);
       POI poi = new POI(lat, lon);
-      pois.add(poi);
+      if(shop!=null && shop.equals("bicycle")){
+        shops.add(poi);
+      }
+      else pois.add(poi);
     }
     
     //Polygons if polygon
@@ -71,7 +76,11 @@ void parseData(){
       }
       //Create the Way with the coordinate PVectors
       Way way = new Way(coords, waterway);
-      ways.add(way);
+      if(waterway!=null && waterway.equals("canal")){
+        water.add(way);
+      }
+      else
+            ways.add(way);
     }
     
   }
@@ -80,17 +89,24 @@ void parseData(){
 void drawGISObjects() {
   
   /* Draw all polygons */ 
-  for(int i = 0; i<polygons.size(); i++){
-    polygons.get(i).draw();
-  }
+  //for(int i = 0; i<polygons.size(); i++){
+    //polygons.get(i).draw();
+  //}
   
    /* Draw all the ways (roads, sidewalks, etc) */
   for(int i = 0; i<ways.size(); i++){
     ways.get(i).draw();
   }
+    for(int i = 0; i<water.size(); i++){
+    water.get(i).draw();
+  }
 
   /* Draw all POIs */
-  for(int i = 0; i<pois.size(); i++){
-    pois.get(i).draw();
+  //for(int i = 0; i<pois.size(); i++){
+    //pois.get(i).draw();
+  //}
+  //Draw all shops
+  for(int i = 0; i<shops.size(); i++){
+    shops.get(i).draw();
   }
 }
