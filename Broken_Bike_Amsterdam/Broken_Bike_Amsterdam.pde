@@ -75,7 +75,7 @@ void setup() {
   landpoiPaths();
   
   /* Step 3: Initialize Paths Using ONLY ONE of these methods */
-  initPopulation(1000);
+  initPopulation(500);
   landinitPopulation(1000);
   //initPopulation(500);
   
@@ -115,7 +115,7 @@ void draw() {
   boolean collisionDetection = true;
   for (Agent p: people) {
     p.update(personLocations(people), collisionDetection);
-    p.display(#FF4500, 150);
+    p.display(#FB4F14, 150);
   }
    for (Agent p: landpeople) {
     p.update(personLocations(landpeople), collisionDetection);

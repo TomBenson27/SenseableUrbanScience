@@ -89,9 +89,9 @@ void parseData(){
 void drawGISObjects() {
   
   /* Draw all polygons */ 
-  for(int i = 0; i<polygons.size(); i++){
-    polygons.get(i).draw();
-  }
+  //for(int i = 0; i<polygons.size(); i++){
+    //polygons.get(i).draw();
+  //}
   
    /* Draw all the ways (roads, sidewalks, etc) */
   for(int i = 0; i<ways.size(); i++){

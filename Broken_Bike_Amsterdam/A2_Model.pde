@@ -114,8 +114,8 @@ void poiPaths() {
     PVector orig = new PVector(random(1.0)*width, random(1.0)*height); // Origin is Random Location
     
     // Destination is Random POI
-    int dest_index = int(random(pois.size()));
-    PVector dest = pois.get(dest_index).coord;
+    int dest_index = int(random(shops.size()));
+    PVector dest = shops.get(dest_index).coord;
     dest = map.getScreenLocation(dest);
     
     Path p = new Path(orig, dest);
