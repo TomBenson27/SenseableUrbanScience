@@ -115,11 +115,11 @@ void draw() {
   boolean collisionDetection = true;
   for (Agent p: people) {
     p.update(personLocations(people), collisionDetection);
-    p.display(#FB4F14, 150);
+    p.display(#FF8C00, 250);
   }
    for (Agent p: landpeople) {
     p.update(personLocations(landpeople), collisionDetection);
-    p.display(#FFFF00, 150);
+    p.display(#FFFF00, 250);
   }
   
 }
