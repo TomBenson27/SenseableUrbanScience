@@ -43,6 +43,7 @@ PImage background;
 
 // Declare GIS-style Objects
 ArrayList<POI> pois;
+ArrayList<POI> shops;
 ArrayList<Way> ways; 
 ArrayList<Way> water;
 ArrayList<Polygon> polygons;
@@ -56,6 +57,7 @@ void setup() {
   ways = new ArrayList<Way>();
   water = new ArrayList<Way>();
   pois = new ArrayList<POI>();
+  shops = new ArrayList<POI>();
   
   /* Load in and parse your data in setup -- don't want to do this every frame! */
   loadData();
@@ -64,14 +66,17 @@ void setup() {
   /* Step 1: Initialize Network Using ONLY ONE of these methods */
   //randomNetwork(0.5); // a number between 0.0 and 1.0 specifies how 'porous' the network is
   waysNetwork(water);
+  landwaysNetwork(ways);
   //randomNetworkMinusBuildings(0.1, polygons); // a number between 0.0 and 1.0 specifies how 'porous' the network is
   
   /* Step 2: Initialize Paths Using ONLY ONE of these methods */
   //randomPaths();
   poiPaths();
+  landpoiPaths();
   
   /* Step 3: Initialize Paths Using ONLY ONE of these methods */
   initPopulation(1000);
+  landinitPopulation(1000);
   //initPopulation(500);
   
 }
@@ -100,6 +105,9 @@ void draw() {
   for (Path p: paths) {
     p.display(100, 50);
   }
+  for (Path d: landpaths){
+    d.display(100,50);
+  }
   
   /*  Update and Display the population of agents
    *  FORMAT: display(color, alpha)
@@ -107,15 +115,19 @@ void draw() {
   boolean collisionDetection = true;
   for (Agent p: people) {
     p.update(personLocations(people), collisionDetection);
+    p.display(#FF4500, 150);
+  }
+   for (Agent p: landpeople) {
+    p.update(personLocations(landpeople), collisionDetection);
     p.display(#FFFF00, 150);
   }
   
 }
 
-void keyPressed() {
+//void keyPressed() {
   
   //randomPaths();
-  poiPaths();
+  //poiPaths();
   //initPopulation(1000);
   
-}
+//}

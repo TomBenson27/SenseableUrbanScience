@@ -30,6 +30,8 @@ void parseData(){
     JSONObject geometry = features.getJSONObject(i).getJSONObject("geometry");
     JSONObject properties =  features.getJSONObject(i).getJSONObject("properties");
     String waterway = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("waterway");
+    String shop = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("shop"); 
+    println(shop);
     
     //Make POIs if it's a point
     if(type.equals("Point")){
@@ -37,7 +39,10 @@ void parseData(){
       float lat = geometry.getJSONArray("coordinates").getFloat(1);
       float lon = geometry.getJSONArray("coordinates").getFloat(0);
       POI poi = new POI(lat, lon);
-      pois.add(poi);
+      if(shop!=null && shop.equals("bicycle")){
+        shops.add(poi);
+      }
+      else pois.add(poi);
     }
     
     //Polygons if polygon
@@ -97,7 +102,11 @@ void drawGISObjects() {
   }
 
   /* Draw all POIs */
-  for(int i = 0; i<pois.size(); i++){
-    pois.get(i).draw();
+  //for(int i = 0; i<pois.size(); i++){
+    //pois.get(i).draw();
+  //}
+  //Draw all shops
+  for(int i = 0; i<shops.size(); i++){
+    shops.get(i).draw();
   }
 }
