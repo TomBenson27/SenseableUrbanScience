@@ -49,7 +49,7 @@ ArrayList<Way> water;
 ArrayList<Polygon> polygons;
 
 void setup() {
-  size(1000, 650);
+  fullScreen();
   
   /* Intiailize your data structures early in setup */
   map = new MercatorMap(width, height, 52.3722, 52.3649, 4.8694, 4.8893, 0);
@@ -75,8 +75,8 @@ void setup() {
   landpoiPaths();
   
   /* Step 3: Initialize Paths Using ONLY ONE of these methods */
-  initPopulation(500);
-  landinitPopulation(1000);
+  initPopulation(5);
+  landinitPopulation(50);
   //initPopulation(500);
   
 }
