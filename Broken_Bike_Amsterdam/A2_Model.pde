@@ -111,11 +111,13 @@ void poiPaths() {
   for (int i=0; i<50; i++) {
     //  An example Origin and Desination between which we want to know the shortest path
     //
-    PVector orig = new PVector(random(1.0)*width, random(1.0)*height); // Origin is Random Location
+    int orig_index = int(random(waterpoint.size()));
+    PVector orig = waterpoint.get(orig_index).coord;
+    orig = map.getScreenLocation(orig);
     
     // Destination is Random POI
-    int dest_index = int(random(shops.size()));
-    PVector dest = shops.get(dest_index).coord;
+    int dest_index = int(random(waterpoint.size()));
+    PVector dest = waterpoint.get(dest_index).coord;
     dest = map.getScreenLocation(dest);
     
     Path p = new Path(orig, dest);
@@ -165,12 +167,14 @@ void initPopulation(int count) {
       people.add(person);
     }
   }
+
 }
 
 void landinitPopulation(int count) {
   /*  An example population that traverses along various paths
   *  FORMAT: Agent(x, y, radius, speed, path);
   */
+  
   landpeople = new ArrayList<Agent>();
   for (int i=0; i<count; i++) {
     int random_index = int(random(landpaths.size()));

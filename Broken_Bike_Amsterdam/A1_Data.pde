@@ -1,6 +1,7 @@
 JSONObject example;
 JSONArray features;
 JSONObject wholeArea;
+Table waterpoints;
 //Look at https://processing.org/reference/JSONObject.html for more info
 
 void loadData(){
@@ -19,6 +20,16 @@ void loadData(){
   println("There are : ", features.size(), " features."); 
 }
 
+void loadwaterpointdata(){
+  waterpoints = loadTable("10m_points.csv", "header");
+  for (TableRow row: waterpoints.rows()){
+    Float lat = row.getFloat("LONG");
+    Float lon = row.getFloat("LAT");
+    POI poi = new POI(lat, lon);
+    waterpoint.add(poi);
+  }
+}
+
 void parseData(){
   //First do the general object
   JSONObject feature = features.getJSONObject(0);
@@ -31,7 +42,6 @@ void parseData(){
     JSONObject properties =  features.getJSONObject(i).getJSONObject("properties");
     String waterway = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("waterway");
     String shop = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("shop"); 
-    println(shop);
     
     //Make POIs if it's a point
     if(type.equals("Point")){
@@ -108,5 +118,8 @@ void drawGISObjects() {
   //Draw all shops
   for(int i = 0; i<shops.size(); i++){
     shops.get(i).draw();
+  }
+    for(int i = 0; i<waterpoint.size(); i++){
+    waterpoint.get(i).draw();
   }
 }
