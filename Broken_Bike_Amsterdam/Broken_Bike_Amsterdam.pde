@@ -49,7 +49,7 @@ ArrayList<Way> water;
 ArrayList<Polygon> polygons;
 
 void setup() {
-  fullScreen();
+  size(1000,650);
   
   /* Intiailize your data structures early in setup */
   map = new MercatorMap(width, height, 52.3722, 52.3649, 4.8694, 4.8893, 0);
@@ -123,6 +123,13 @@ void draw() {
   }
   
 }
+
+void keyPressed() {
+    println(personLocations(landpeople).get(0));
+    landpeople.remove(0);
+    println("Crash");
+  }
+
 
 //void keyPressed() {
   

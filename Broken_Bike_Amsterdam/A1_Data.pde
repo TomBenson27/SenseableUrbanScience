@@ -30,8 +30,7 @@ void parseData(){
     JSONObject geometry = features.getJSONObject(i).getJSONObject("geometry");
     JSONObject properties =  features.getJSONObject(i).getJSONObject("properties");
     String waterway = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("waterway");
-    String shop = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("shop"); 
-    println(shop);
+    String shop = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("shop");
     
     //Make POIs if it's a point
     if(type.equals("Point")){
