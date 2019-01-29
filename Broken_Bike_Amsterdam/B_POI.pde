@@ -20,7 +20,7 @@ class POI{
     PVector screenLocation = map.getScreenLocation(coord);
     fill(fill);
     noStroke();
-    ellipse(screenLocation.x, screenLocation.y, 10, 10);
+    rect(screenLocation.x-15, screenLocation.y-5, 30, 10);
   }
   
   
