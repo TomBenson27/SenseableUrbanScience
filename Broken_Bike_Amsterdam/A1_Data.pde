@@ -100,7 +100,7 @@ void drawGISObjects() {
   
   /* Draw all polygons */ 
   //for(int i = 0; i<polygons.size(); i++){
-    //polygons.get(i).draw();
+  //  polygons.get(i).draw();
   //}
   
    /* Draw all the ways (roads, sidewalks, etc) */

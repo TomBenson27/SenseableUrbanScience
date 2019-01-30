@@ -48,7 +48,8 @@ ArrayList<POI> waterpoint;
 ArrayList<Way> ways; 
 ArrayList<Way> water;
 ArrayList<Polygon> polygons;
-ArrayList<PVector> flats;
+PVector flat; 
+ArrayList<PVector> personLocations;
 
 void setup() {
   size(1000, 650);
@@ -61,8 +62,6 @@ void setup() {
   pois = new ArrayList<POI>();
   shops = new ArrayList<POI>();
   waterpoint = new ArrayList<POI>();
-  
-  flats = new ArrayList<PVector>();
   
   /* Load in and parse your data in setup -- don't want to do this every frame! */
   loadData();
@@ -81,7 +80,7 @@ void setup() {
   landpoiPaths();
   
   /* Step 3: Initialize Paths Using ONLY ONE of these methods */
-  initPopulation(100);
+  initPopulation(10);
   landinitPopulation(50);
   //initPopulation(500);
   
@@ -128,19 +127,30 @@ void draw() {
     p.display(#FFFF00, 250);
   }
   
-  for(PVector p : flats){
-    fill(color(255,0,0));
-    ellipse(p.x, p.y, 16, 16);
+  
+  if(flat != null){
+  fill(255,0,0);
+  ellipse(flat.x, flat.y, 20, 20);
   }
+  
+  if(closest != null){
+  fill(0, 255, 255);
+  ellipse(closest.x, closest.y, 20, 20);
+  }
+  
+  //for (Agent p: crashpeople){
+  //  p.update(personLocations(crashpeople), collisionDetection);
+  //  p.display(#0000FF, 250);
+  //}
 }
 
 void keyPressed() {
     //PVector flat = new PVector();
-    flats.add(personLocations(landpeople).get(0));
+    flat = personLocations(landpeople).get(0);
     println(personLocations(landpeople).get(0));
     landpeople.remove(0);
     println("Crash");
-    println("Crash Site");
+    closestToFlat();
     }
     
 //void keyPressed() {
@@ -150,3 +160,16 @@ void keyPressed() {
   //initPopulation(1000);
   
 //}
+  PVector closest = null;
+void closestToFlat(){
+  float minDist = 1000000000;
+  for(int i = 0; i<personLocations(people).size(); i++){
+    float dist = dist(flat.x, flat.y, personLocations(people).get(i).x, personLocations(people).get(i).y);
+    
+    if(dist < minDist){
+      minDist = dist;
+      closest = personLocations(people).get(i);
+    }
+  }
+  println(closest);
+}

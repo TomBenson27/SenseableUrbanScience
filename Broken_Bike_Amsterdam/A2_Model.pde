@@ -8,11 +8,13 @@ Pathfinder finder;
 
 //  Object to define and capture a specific origin, destiantion, and path
 ArrayList<Path> paths;
-ArrayList<Path>landpaths;
+ArrayList<Path> landpaths;
+
 
 //  Objects to define agents that navigate our environment
 ArrayList<Agent> people;
 ArrayList<Agent> landpeople;
+ArrayList<Agent> crashpeople;
 
 void randomNetwork(float cull) {
   //  An example gridded network of width x height (pixels) and node resolution (pixels)
@@ -185,6 +187,25 @@ void landinitPopulation(int count) {
       PVector loc = random_landpath.waypoints.get(random_waypoint);
       Agent landperson = new Agent(loc.x, loc.y, 5, random_speed, random_landpath.waypoints);
       landpeople.add(landperson);
+    }
+  }
+}
+
+void crashinitPopulation(int count) {
+  /*  An example population that traverses along various paths
+  *  FORMAT: Agent(x, y, radius, speed, path);
+  */
+  
+  crashpeople = new ArrayList<Agent>();
+  for (int i=0; i<count; i++) {
+    int random_index = int(random(landpaths.size()));
+    Path random_landpath = landpaths.get(random_index);
+    if (random_landpath.waypoints.size() > 1) {
+      int random_waypoint = int(random(random_landpath.waypoints.size()));
+      float random_speed = 0.3;
+      PVector loc = random_landpath.waypoints.get(random_waypoint);
+      Agent crashperson = new Agent(loc.x, loc.y, 5, random_speed, random_landpath.waypoints);
+      crashpeople.add(crashperson);
     }
   }
 }
