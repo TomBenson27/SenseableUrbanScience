@@ -8,7 +8,7 @@ class POI{
   
   //fill color
   color fill;
-
+  
   POI(float lat, float lon){
     lat = lat;
     lon = lon;

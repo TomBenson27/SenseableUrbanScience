@@ -44,7 +44,7 @@ MercatorMap map;
 // Declare GIS-style Objects
 ArrayList<POI> pois;
 ArrayList<BikeShops> bikeshops;
-ArrayList<POI> shops;
+ArrayList<BikeShops> shops;
 ArrayList<POI> waterpoint;
 ArrayList<Way> ways; 
 ArrayList<Way> water;
@@ -61,7 +61,7 @@ void setup() {
   water = new ArrayList<Way>();
   bikeshops = new ArrayList<BikeShops>(); 
   pois = new ArrayList<POI>();
-  shops = new ArrayList<POI>();
+  shops = new ArrayList<BikeShops>();
   waterpoint = new ArrayList<POI>();
   
   flats = new ArrayList<PVector>();
