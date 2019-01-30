@@ -9,19 +9,26 @@ class POI{
   //fill color
   color fill;
 
-  POI(float lat, float lon){
+  POI(float lat, float lon, int a){
     lat = lat;
     lon = lon;
     coord = new PVector(lat, lon);
     println(coord);
+    if(a == 3){
     fill = color(255, 0, 225);
+    }
+    if (a == 4){
+    fill = color(0,255,0);
+    }
+    else 
+    fill(100,100,100);
   }
   
   void draw(){
     PVector screenLocation = map.getScreenLocation(coord);
     fill(fill);
     noStroke();
-    ellipse(screenLocation.x-2, screenLocation.y-2, 4, 4);
+    rect(screenLocation.x-2, screenLocation.y-2, 16, 16);
   }
   
   
