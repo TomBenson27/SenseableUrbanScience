@@ -39,11 +39,12 @@
 
 // Make a blank map 
 MercatorMap map;
-PImage background;
+//PImage background;
 
 // Declare GIS-style Objects
 ArrayList<POI> pois;
-ArrayList<POI> shops;
+ArrayList<BikeShops> bikeshops;
+ArrayList<BikeShops> shops;
 ArrayList<POI> waterpoint;
 ArrayList<Way> ways; 
 ArrayList<Way> water;
@@ -59,8 +60,9 @@ void setup() {
   polygons = new ArrayList<Polygon>();
   ways = new ArrayList<Way>();
   water = new ArrayList<Way>();
+  bikeshops = new ArrayList<BikeShops>(); 
   pois = new ArrayList<POI>();
-  shops = new ArrayList<POI>();
+  shops = new ArrayList<BikeShops>();
   waterpoint = new ArrayList<POI>();
   
   /* Load in and parse your data in setup -- don't want to do this every frame! */
@@ -90,7 +92,7 @@ void draw() {
   background(0);
   
   /* background image from OSM */
-  image(background, 0, 0);
+ // image(background, 0, 0);
   drawGISObjects();
   
   /*  Displays the Graph in grayscale */

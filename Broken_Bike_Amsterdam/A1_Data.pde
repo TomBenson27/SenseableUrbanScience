@@ -2,12 +2,13 @@ JSONObject example;
 JSONArray features;
 JSONObject wholeArea;
 Table waterpoints;
+JSONArray BikeShops;
 //Look at https://processing.org/reference/JSONObject.html for more info
 
 void loadData(){
   /* Load and resize background image */
-  background = loadImage("exampledata.PNG");
-  background.resize(width, height);
+  //background = loadImage("exampledata.PNG");
+ // background.resize(width, height);
   
   /* Small example area */
   //example = loadJSONObject("data/example.json");
@@ -43,16 +44,18 @@ void parseData(){
     String waterway = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("waterway");
     String shop = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("shop");
     
+    
+    
     //Make POIs if it's a point
     if(type.equals("Point")){
       //create new POI
       float lat = geometry.getJSONArray("coordinates").getFloat(1);
       float lon = geometry.getJSONArray("coordinates").getFloat(0);
-      POI poi = new POI(lat, lon);
+      BikeShops bikeshops = new BikeShops(lat, lon);
       if(shop!=null && shop.equals("bicycle")){
-        shops.add(poi);
+//        shops.add(BikeShops);
       }
-      else pois.add(poi);
+//      else pois.add(BikeShops);
     }
     
     //Polygons if polygon

@@ -90,12 +90,12 @@ void landpoiPaths() {
     
     // Destination is Random POI
     int dest_index = int(random(pois.size()));
-    PVector dest = pois.get(dest_index).coord;
-    dest = map.getScreenLocation(dest);
+//    PVector dest = pois.get(dest_index).coord;
+//    dest = map.getScreenLocation(dest);
     
-    Path d = new Path(orig, dest);
-    d.solve(finder);
-    landpaths.add(d);
+//    Path d = new Path(orig, dest);
+//    d.solve(finder);
+//    landpaths.add(d);
   }
   
 }
