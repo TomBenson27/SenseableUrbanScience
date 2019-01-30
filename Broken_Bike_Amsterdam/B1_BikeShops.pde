@@ -1,4 +1,4 @@
-class POI{
+class BikeShops{
   //What is the coordinate of the POI in lat, lon
   PVector coord;
   
@@ -23,6 +23,5 @@ class POI{
     noStroke();
     ellipse(screenLocation.x-2, screenLocation.y-2, 1, 4);
   }
-  
   
 }

@@ -12,7 +12,7 @@ class Polygon{
   //Constructor with coordinates
   Polygon(ArrayList<PVector> coords){
     coordinates = coords;
-    fill = color(0, 0, 0);
+    fill = color(100, 0, 0);
     makeShape();
   }
   
@@ -31,6 +31,6 @@ class Polygon{
 
   //Drawing shape
   void draw(){
-    shape(p, 0, 0);
+    shape(p, 50, 0);
   }
 }

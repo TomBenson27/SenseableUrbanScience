@@ -6,8 +6,8 @@ Table waterpoints;
 
 void loadData(){
   /* Load and resize background image */
-  background = loadImage("exampledata.PNG");
-  background.resize(width, height);
+  //background = loadImage("exampledata.PNG");
+ // background.resize(width, height);
   
   /* Small example area */
   //example = loadJSONObject("data/example.json");
@@ -48,11 +48,11 @@ void parseData(){
       //create new POI
       float lat = geometry.getJSONArray("coordinates").getFloat(1);
       float lon = geometry.getJSONArray("coordinates").getFloat(0);
-      POI poi = new POI(lat, lon);
+      BikeShops bikeshops = new BikeShops(lat, lon);
       if(shop!=null && shop.equals("bicycle")){
-        shops.add(poi);
+        shops.add(BikeShops);
       }
-      else pois.add(poi);
+      else pois.add(BikeShops);
     }
     
     //Polygons if polygon
