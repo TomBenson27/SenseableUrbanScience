@@ -2,7 +2,6 @@ JSONObject example;
 JSONArray features;
 JSONObject wholeArea;
 Table waterpoints;
-JSONArray BikeShops;
 //Look at https://processing.org/reference/JSONObject.html for more info
 
 void loadData(){
@@ -43,8 +42,6 @@ void parseData(){
     JSONObject properties =  features.getJSONObject(i).getJSONObject("properties");
     String waterway = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("waterway");
     String shop = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("shop");
-    
-    
     
     //Make POIs if it's a point
     if(type.equals("Point")){
@@ -103,7 +100,11 @@ void drawGISObjects() {
   
   /* Draw all polygons */ 
   //for(int i = 0; i<polygons.size(); i++){
+<<<<<<< HEAD
   //  polygons.get(i).draw();
+=======
+    //polygons.get(i).draw();
+>>>>>>> parent of 19ab820... edge
   //}
   
    /* Draw all the ways (roads, sidewalks, etc) */

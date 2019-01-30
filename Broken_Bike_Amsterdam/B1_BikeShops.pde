@@ -9,7 +9,7 @@ class BikeShops{
   //fill color
   color fill;
 
-  BikeShops(float lat, float lon){
+  POI(float lat, float lon){
     lat = lat;
     lon = lon;
     coord = new PVector(lat, lon);
@@ -21,7 +21,7 @@ class BikeShops{
     PVector screenLocation = map.getScreenLocation(coord);
     fill(fill);
     noStroke();
-    ellipse(screenLocation.x-2, screenLocation.y-2, 20, 20);
+    ellipse(screenLocation.x-2, screenLocation.y-2, 1, 4);
   }
   
 }
