@@ -48,9 +48,10 @@ ArrayList<POI> waterpoint;
 ArrayList<Way> ways; 
 ArrayList<Way> water;
 ArrayList<Polygon> polygons;
+ArrayList<PVector> flats;
 
 void setup() {
-  fullScreen();
+  size(1000, 650);
   
   /* Intiailize your data structures early in setup */
   map = new MercatorMap(width, height, 52.3722, 52.3649, 4.8694, 4.8893, 0);
@@ -60,6 +61,8 @@ void setup() {
   pois = new ArrayList<POI>();
   shops = new ArrayList<POI>();
   waterpoint = new ArrayList<POI>();
+  
+  flats = new ArrayList<PVector>();
   
   /* Load in and parse your data in setup -- don't want to do this every frame! */
   loadData();
@@ -125,15 +128,21 @@ void draw() {
     p.display(#FFFF00, 250);
   }
   
+  for(PVector p : flats){
+    fill(color(255,0,0));
+    ellipse(p.x, p.y, 16, 16);
+  }
 }
 
 void keyPressed() {
+    //PVector flat = new PVector();
+    flats.add(personLocations(landpeople).get(0));
     println(personLocations(landpeople).get(0));
     landpeople.remove(0);
     println("Crash");
-  }
-
-
+    println("Crash Site");
+    }
+    
 //void keyPressed() {
   
   //randomPaths();
