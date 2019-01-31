@@ -25,6 +25,8 @@ void loadwaterpointdata(){
   for (TableRow row: waterpoints.rows()){
     Float lat = row.getFloat("LONG");
     Float lon = row.getFloat("LAT");
+    PVector waterpointcoord = new PVector(lat, lon);
+    println(waterpointcoord);
     int f = 1;
     POI poi = new POI(lat, lon, f);
     waterpoint.add(poi);
