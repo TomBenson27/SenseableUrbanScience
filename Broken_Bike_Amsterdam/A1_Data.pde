@@ -24,7 +24,6 @@ void loadData(){
 
 void loadwaterpointdata(){
   waterpoints = loadTable("10m_points.csv", "header");
-  ArrayList<PVector> waterpointcoords = new ArrayList<PVector>();
   for (TableRow row: waterpoints.rows()){
     Float lat = row.getFloat("LONG");
     Float lon = row.getFloat("LAT");

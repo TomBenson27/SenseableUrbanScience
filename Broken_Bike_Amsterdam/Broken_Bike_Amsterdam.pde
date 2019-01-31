@@ -52,6 +52,7 @@ ArrayList<Polygon> polygons;
 PVector flat; 
 ArrayList<PVector> personLocations;
 ArrayList<PVector> shopcoords;
+ArrayList<PVector> waterpointcoords;
 
 void setup() {
   size(1000, 650);
@@ -66,6 +67,7 @@ void setup() {
   shops = new ArrayList<POI>();
   waterpoint = new ArrayList<POI>();
   shopcoords = new ArrayList<PVector>();
+  waterpointcoords = new ArrayList<PVector>();
   
   /* Load in and parse your data in setup -- don't want to do this every frame! */
   loadData();
@@ -147,6 +149,12 @@ void draw() {
   rect(closestshopScreen.x, closestshopScreen.y, 20, 20);
   }
   
+  if(closestcanal != null){
+  fill(0, 255, 255);
+  PVector closestcanalScreen = map.getScreenLocation(closestcanal);
+  ellipse(closestcanalScreen.x, closestcanalScreen.y, 10, 10);
+  }
+  
   //for (Agent p: crashpeople){
   //  p.update(personLocations(crashpeople), collisionDetection);
   //  p.display(#0000FF, 250);
@@ -161,7 +169,19 @@ void keyPressed() {
    //  
     closestToFlat();
     closestBikeshop();
+    closestCanal();
+    bikeshoppoiPaths();
+    crashinitPopulation(1);
+    displaycrashpeople();
     }
+    
+void displaycrashpeople(){
+    boolean collisionDetection = true;
+    for (Agent b: crashpeople) {
+    b.update(personLocations(crashpeople), collisionDetection);
+    b.display(#FF0000, 250);
+  }
+}
     
   PVector closest = null;
 void closestToFlat(){
@@ -173,7 +193,7 @@ void closestToFlat(){
       closest = personLocations(people).get(i);
     }
   }
-  //println(closest);
+    println("Distance of closest roboat", minDist);
 }
 
 PVector closestshop = null;
@@ -183,12 +203,27 @@ void closestBikeshop(){
   println("flat location: ", flat.x, flat.y);
   for(int j = 0; j<shopcoords.size(); j++){
     PVector screenLoc = map.getScreenLocation(shopcoords.get(j));
-    println(screenLoc);
     float dist = dist(flat.x, flat.y, screenLoc.x, screenLoc.y);
     if(dist < minDist){
       minDist = dist;
       closestshop = shopcoords.get(j);
     }
   }
- // println(closestshop);
+    println("Distance of closest bike shop", minDist);
+}
+
+PVector closestcanal = null;
+void closestCanal(){
+  float minDist = 1000000000;
+  //println("number of things in shopcoords", shopcoords.size());
+  println("flat location: ", flat.x, flat.y);
+  for(int j = 0; j<waterpointcoords.size(); j++){
+    PVector screenLoc = map.getScreenLocation(waterpointcoords.get(j));
+    float dist = dist(flat.x, flat.y, screenLoc.x, screenLoc.y);
+    if(dist < minDist){
+      minDist = dist;
+      closestcanal = waterpointcoords.get(j);
+    }
+  }
+  println("Distance of closest canal", minDist);
 }
