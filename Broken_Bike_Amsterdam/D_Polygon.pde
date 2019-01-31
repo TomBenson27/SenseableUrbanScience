@@ -3,6 +3,7 @@ class Polygon{
   PShape p;
   ArrayList<PVector>coordinates;
   color fill;
+  color stroke;
 
   //Empty constructor
   Polygon(){
@@ -13,10 +14,12 @@ class Polygon{
   Polygon(ArrayList<PVector> coords, int a){
     coordinates = coords;
     if(a == 1){
-    fill = color(0, 0, 200);
+    fill = color(#163693,220);
     }
     else {
-      fill = color(130,100,130);
+       stroke(0,0,0);
+      fill = color(55,55,55);
+ 
     }
     makeShape();
   }
@@ -26,10 +29,10 @@ class Polygon{
     p = createShape();
     p.beginShape();
     p.fill(fill);
-    p.noStroke();
+    p.stroke(4);
     for(int i = 0; i<coordinates.size(); i++){
         PVector screenLocation = map.getScreenLocation(coordinates.get(i));
-        p.vertex(screenLocation.x, screenLocation.y);
+        p.vertex(screenLocation.x-55, screenLocation.y);
     }
     p.endShape();
   }

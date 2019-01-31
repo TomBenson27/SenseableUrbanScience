@@ -93,7 +93,7 @@ void setup() {
   initPopulation(10);
   landinitPopulation(50);
   //initPopulation(500);
-  background(0);
+  
   for(int i = 0; i<waterpolygons.size(); i++){
     waterpolygons.get(i).draw();
   }
@@ -103,7 +103,7 @@ void setup() {
 }
 
 void draw() {
-
+  
   /* background image from OSM */
  // image(background, 0, 0);
   drawGISObjects();
@@ -173,13 +173,8 @@ void draw() {
   for (Agent p: crashpeople){
     p.update(personLocations(crashpeople), collisionDetection);
     p.display(#0000FF, 250);
-    }
-  for (Agent w: ambulanceboats){
-    w.update(personLocations(ambulanceboats), collisionDetection);
-    w.display(#0000FF, 250);
-    }
   }
-  
+  }
 }
 
 
@@ -196,7 +191,6 @@ void keyPressed() {
       closestCanal();
       bikeshoppoiPaths();
       crashinitPopulation(1);
-      ambulanceboatinitPopulation(1);
       crashed = true;
     }
 }
@@ -227,7 +221,7 @@ PVector screenclosestshop = null;
 void closestBikeshop(){
   float minDist = 1000000000;
   //println("number of things in shopcoords", shopcoords.size());
-  //println("flat location: ", flat.x, flat.y);
+  println("flat location: ", flat.x, flat.y);
   for(int j = 0; j<shopcoords.size(); j++){
     PVector screenLoc = map.getScreenLocation(shopcoords.get(j));
     float dist = dist(flat.x, flat.y, screenLoc.x, screenLoc.y);
@@ -235,25 +229,24 @@ void closestBikeshop(){
       minDist = dist;
       closestshop = shopcoords.get(j);
       screenclosestshop = map.getScreenLocation(shopcoords.get(j));
+      println(screenclosestshop);
     }
   }
     println("Distance of closest bike shop", minDist);
 }
 
 PVector closestcanal = null;
-PVector screenclosestcanal = null;
 void closestCanal(){
   float minDist = 1000000000;
   //println("number of things in shopcoords", shopcoords.size());
-  //println("flat location: ", flat.x, flat.y);
+  println("flat location: ", flat.x, flat.y);
   for(int j = 0; j<waterpointcoords.size(); j++){
     PVector screenLoc = map.getScreenLocation(waterpointcoords.get(j));
     float dist = dist(flat.x, flat.y, screenLoc.x, screenLoc.y);
     if(dist < minDist){
       minDist = dist;
       closestcanal = waterpointcoords.get(j);
-      screenclosestcanal = map.getScreenLocation(waterpointcoords.get(j));
     }
   }
-  //println("Distance of closest canal", minDist);
+  println("Distance of closest canal", minDist);
 }
