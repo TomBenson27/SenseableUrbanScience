@@ -113,7 +113,7 @@ void bikeshoppoiPaths() {
    */
    
   bikeshoppaths = new ArrayList<Path>();
-  for (int i=0; i<50; i++) {
+  //for (int i=0; i<50; i++) {
     //  An example Origin and Desination between which we want to know the shortest path
     orig = flat; // Origin is Random Location
     
@@ -123,7 +123,7 @@ void bikeshoppoiPaths() {
     Path b = new Path(orig, dest);
     b.solve(finder);
     bikeshoppaths.add(b);
-  }
+  //}
   
 }
 
@@ -228,9 +228,9 @@ void crashinitPopulation(int count) {
     int random_index = int(random(bikeshoppaths.size()));
     Path random_bikeshoppath = bikeshoppaths.get(random_index);
     if (random_bikeshoppath.waypoints.size() > 1) {
-      int random_waypoint = int(random(random_bikeshoppath.waypoints.size()));
-      float random_speed = 0.3;
-      PVector loc = random_bikeshoppath.waypoints.get(random_waypoint);
+      int first_waypoint = 0;
+      float random_speed = 1.5;
+      PVector loc = random_bikeshoppath.waypoints.get(first_waypoint);
       Agent crashperson = new Agent(loc.x, loc.y, 5, random_speed, random_bikeshoppath.waypoints);
       crashpeople.add(crashperson);
     }

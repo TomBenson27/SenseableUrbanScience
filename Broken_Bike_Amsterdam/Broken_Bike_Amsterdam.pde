@@ -160,27 +160,31 @@ void draw() {
   ellipse(closestcanalScreen.x, closestcanalScreen.y, 10, 10);
   }
   
-  //for (Agent p: crashpeople){
-  //  p.update(personLocations(crashpeople), collisionDetection);
-  //  p.display(#0000FF, 250);
-  //}
+  if (crashed == true) {
+  for (Agent p: crashpeople){
+    p.update(personLocations(crashpeople), collisionDetection);
+    p.display(#0000FF, 250);
+  }
+  }
 }
 
 
-
+boolean crashed = false;
 void keyPressed() {
-    //PVector flat = new PVector();
-    flat = personLocations(landpeople).get(0);
-    landpeople.remove(0);
-   // println("Crash");
-   //  
-    closestToFlat();
-    closestBikeshop();
-    closestCanal();
-    bikeshoppoiPaths();
-    crashinitPopulation(1);
-    displaycrashpeople();
+    if (crashed == false) {
+      //PVector flat = new PVector();
+      flat = personLocations(landpeople).get(0);
+      landpeople.remove(0);
+     // println("Crash");
+     //  
+      closestToFlat();
+      closestBikeshop();
+      closestCanal();
+      bikeshoppoiPaths();
+      crashinitPopulation(1);
+      crashed = true;
     }
+}
     
 void displaycrashpeople(){
     boolean collisionDetection = true;
