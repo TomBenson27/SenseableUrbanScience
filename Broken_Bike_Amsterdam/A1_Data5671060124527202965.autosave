@@ -24,6 +24,7 @@ void loadData(){
 
 void loadwaterpointdata(){
   waterpoints = loadTable("10m_points.csv", "header");
+  ArrayList<PVector> waterpointcoords = new ArrayList<PVector>();
   for (TableRow row: waterpoints.rows()){
     Float lat = row.getFloat("LONG");
     Float lon = row.getFloat("LAT");
@@ -50,8 +51,6 @@ void parseData(){
     String waterway = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("waterway");
     String shop = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("shop");
     String waterpoly = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("natural");
-    String building = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("building");    
-    
     //Make POIs if it's a point
     if(type.equals("Point")){
       //create new POI
@@ -77,8 +76,6 @@ void parseData(){
     
     //Polygons if polygon
     if(type.equals("Polygon")){
-      int p = 1;
-      int o = 2;
       ArrayList<PVector> coords = new ArrayList<PVector>();
       //get the coordinates and iterate through them
       JSONArray coordinates = geometry.getJSONArray("coordinates").getJSONArray(0);
@@ -88,22 +85,15 @@ void parseData(){
         //Make a PVector and add it
         PVector coordinate = new PVector(lat, lon);
         coords.add(coordinate);
-      
-      if(waterpoly != null && waterpoly.equals("water")){
-        Polygon poly = new Polygon(coords, p);
-        waterpolygons.add(poly);  
+     if(waterpoly !=null && waterpoly.equals("water")){
+          Polygon poly = new Polygon(coords);
+          waterpolygons.add(poly);
       }
-      
-      if(building != null){
-       Polygon poly = new Polygon(coords, o);
-       buildingspolygon.add(poly);
-      }
-      
       else {
-      //Create the Polygon with the coordinate PVectors
-      Polygon poly = new Polygon(coords, 04);
+      Polygon poly = new Polygon(coords);
       polygons.add(poly);
-    }
+      }
+      //Create the Polygon with the coordinate PVectors
       }
     }
     
@@ -122,24 +112,21 @@ void parseData(){
       //Create the Way with the coordinate PVectors
       Way way = new Way(coords, waterway);
       if(waterway!=null && waterway.equals("canal")){
-        water.add(way);
-      }
-      else
-            ways.add(way);
+        water.add(way);}
+      else{
+         ways.add(way);
     }
-    
+    }
   }
 }
 
 void drawGISObjects() {
   
-  for (int i = 0; i<waterpolygons.size(); i++){
+  /* Draw all polygons */ 
+  for(int i = 0; i<waterpolygons.size(); i++){
     waterpolygons.get(i).draw();
   }
-
-  for (int i = 0; i<buildingspolygon.size(); i++){
-    buildingspolygon.get(i).draw();
-  }  
+  
    /* Draw all the ways (roads, sidewalks, etc) */
   for(int i = 0; i<ways.size(); i++){
     ways.get(i).draw();
@@ -156,7 +143,7 @@ void drawGISObjects() {
   for(int i = 0; i<shops.size(); i++){
     shops.get(i).draw();
   }
-    //for(int i = 0; i<waterpoint.size(); i++){
-    //waterpoint.get(i).draw();
-  //}
+    for(int i = 0; i<waterpoint.size(); i++){
+    waterpoint.get(i).draw();
+  }
 }
