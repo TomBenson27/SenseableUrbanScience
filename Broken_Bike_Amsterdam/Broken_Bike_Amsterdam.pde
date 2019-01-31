@@ -103,7 +103,7 @@ void setup() {
 }
 
 void draw() {
-
+  background(0);
   
   /* background image from OSM */
  // image(background, 0, 0);
@@ -144,30 +144,30 @@ void draw() {
   }
    for (Agent p: landpeople) {
     p.update(personLocations(landpeople), collisionDetection);
-    p.display(#66B2C5, 250);
+    p.display(#ffffff,250);
   }
   
   
   if(flat != null){
-  fill(255,0,0);
+  fill(0,255,0);
   ellipse(flat.x, flat.y, 20, 20);
   }
   
   if(closest != null){
-  fill(0, 255, 255);
+  fill(#72A746);
   ellipse(closest.x, closest.y, 20, 20);
   }
   
   if(closestshop != null){
   fill(0, 255, 255);
   PVector closestshopScreen = map.getScreenLocation(closestshop);
-  ellipse(closestshopScreen.x, closestshopScreen.y, 20, 20);
+  ellipse(closestshopScreen.x, closestshopScreen.y, 80, 80);
   }
   
   if(closestcanal != null){
-  fill(0, 255, 255);
+  fill(#C63232);
   PVector closestcanalScreen = map.getScreenLocation(closestcanal);
-  ellipse(closestcanalScreen.x, closestcanalScreen.y, 40, 40);
+  ellipse(closestcanalScreen.x, closestcanalScreen.y, 20, 20);
   }
   
   if (crashed == true) {
