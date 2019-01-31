@@ -4,8 +4,6 @@ JSONObject wholeArea;
 Table waterpoints;
 //Look at https://processing.org/reference/JSONObject.html for more info
 
-
-
 void loadData(){
   /* Load and resize background image */
   //background = loadImage("exampledata.PNG");
@@ -24,16 +22,18 @@ void loadData(){
 
 void loadwaterpointdata(){
   waterpoints = loadTable("10m_points.csv", "header");
+  ArrayList<PVector> waterpointcoords = new ArrayList<PVector>();
   for (TableRow row: waterpoints.rows()){
     Float lat = row.getFloat("LONG");
     Float lon = row.getFloat("LAT");
-    PVector waterpointcoord = new PVector(lat, lon);
-    //println(waterpointcoord);
-    waterpointcoords.add(waterpointcoord);
-    //println(waterpointcoords);
     int f = 1;
     POI poi = new POI(lat, lon, f);
     waterpoint.add(poi);
+    for(int j = 0; j<waterpoint.size(); j++){
+      PVector waterpointcoord = new PVector(lat, lon);
+      waterpointcoords.add(waterpointcoord);
+      println(waterpointcoords);
+    }
   }
 }
 
@@ -62,14 +62,18 @@ void parseData(){
         coords.add(coordinate);
 
       if(shop!=null && shop.equals("bicycle")){
-          POI poi = new POI(lat,lon,e);
-          shops.add(poi);
-          PVector shopcoord = new PVector(lat,lon);
-          shopcoords.add(shopcoord);
+      ArrayList<PVector> shopcoords = new ArrayList<PVector>();
+      POI poi = new POI(lat,lon,e);
+      shops.add(poi);
+      for(int j = 0; j<shops.size(); j++){
+        PVector shopcoord = new PVector(lat,lon);
+        shopcoords.add(shopcoord);
+      }
       }
       else {
-        POI poi = new POI(lat,lon,a); 
+         POI poi = new POI(lat,lon,a); 
         pois.add(poi);
+ 
       }
     }
     
@@ -116,7 +120,9 @@ void parseData(){
 
 void drawGISObjects() {
   
-
+  /* Draw all polygons */ 
+  //for(int i = 0; i<polygons.size(); i++){
+  //  polygons.get(i).draw();
 
   
    /* Draw all the ways (roads, sidewalks, etc) */
