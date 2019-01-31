@@ -93,21 +93,23 @@ void setup() {
   initPopulation(10);
   landinitPopulation(50);
   //initPopulation(500);
-  
-  for(int i = 0; i<waterpolygons.size(); i++){
+    for (int i = 0; i<waterpolygons.size(); i++){
     waterpolygons.get(i).draw();
   }
-  for(int i = 0; i<buildingspolygon.size(); i++){
+
+  for (int i = 0; i<buildingspolygon.size(); i++){
     buildingspolygon.get(i).draw();
   }
+
+  
 }
 
 void draw() {
-
-  
+  background(0);
+  drawGISObjects();  
   /* background image from OSM */
  // image(background, 0, 0);
-  drawGISObjects();
+
   
   /*  Displays the Graph in grayscale */
   tint(255, 75); // overlaid as an image
@@ -218,7 +220,6 @@ void closestToFlat(){
 }
 
 PVector closestshop = null;
-PVector screenclosestshop = null;
 void closestBikeshop(){
   float minDist = 1000000000;
   //println("number of things in shopcoords", shopcoords.size());
@@ -229,8 +230,6 @@ void closestBikeshop(){
     if(dist < minDist){
       minDist = dist;
       closestshop = shopcoords.get(j);
-      screenclosestshop = map.getScreenLocation(shopcoords.get(j));
-      println(screenclosestshop);
     }
   }
     println("Distance of closest bike shop", minDist);

@@ -101,7 +101,7 @@ void parseData(){
       
       else {
       //Create the Polygon with the coordinate PVectors
-      Polygon poly = new Polygon(coords, 04);
+      Polygon poly = new Polygon(coords, o);
       polygons.add(poly);
     }
       }
@@ -133,13 +133,8 @@ void parseData(){
 
 void drawGISObjects() {
   
-  for (int i = 0; i<waterpolygons.size(); i++){
-    waterpolygons.get(i).draw();
-  }
 
-  for (int i = 0; i<buildingspolygon.size(); i++){
-    buildingspolygon.get(i).draw();
-  }  
+ 
    /* Draw all the ways (roads, sidewalks, etc) */
   for(int i = 0; i<ways.size(); i++){
     ways.get(i).draw();
