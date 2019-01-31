@@ -4,6 +4,8 @@ JSONObject wholeArea;
 Table waterpoints;
 //Look at https://processing.org/reference/JSONObject.html for more info
 
+
+
 void loadData(){
   /* Load and resize background image */
   //background = loadImage("exampledata.PNG");
@@ -27,9 +29,9 @@ void loadwaterpointdata(){
     Float lat = row.getFloat("LONG");
     Float lon = row.getFloat("LAT");
     PVector waterpointcoord = new PVector(lat, lon);
-    println(waterpointcoord);
+    //println(waterpointcoord);
     waterpointcoords.add(waterpointcoord);
-    println(waterpointcoords);
+    //println(waterpointcoords);
     int f = 1;
     POI poi = new POI(lat, lon, f);
     waterpoint.add(poi);
@@ -61,18 +63,14 @@ void parseData(){
         coords.add(coordinate);
 
       if(shop!=null && shop.equals("bicycle")){
-      ArrayList<PVector> shopcoords = new ArrayList<PVector>();
-      POI poi = new POI(lat,lon,e);
-      shops.add(poi);
-      for(int j = 0; j<shops.size(); j++){
-        PVector shopcoord = new PVector(lat,lon);
-        shopcoords.add(shopcoord);
-      }
+          POI poi = new POI(lat,lon,e);
+          shops.add(poi);
+          PVector shopcoord = new PVector(lat,lon);
+          shopcoords.add(shopcoord);
       }
       else {
-         POI poi = new POI(lat,lon,a); 
+        POI poi = new POI(lat,lon,a); 
         pois.add(poi);
- 
       }
     }
     

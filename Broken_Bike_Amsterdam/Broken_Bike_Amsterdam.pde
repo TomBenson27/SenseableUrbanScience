@@ -71,7 +71,6 @@ void setup() {
   loadData();
   parseData();
   loadwaterpointdata();
-  
   /* Step 1: Initialize Network Using ONLY ONE of these methods */
   //randomNetwork(0.5); // a number between 0.0 and 1.0 specifies how 'porous' the network is
   waysNetwork(water);
@@ -144,7 +143,8 @@ void draw() {
   
   if(closestshop != null){
   fill(0, 255, 255);
-  rect(closestshop.x, closestshop.y, 20, 20);
+  PVector closestshopScreen = map.getScreenLocation(closestshop);
+  rect(closestshopScreen.x, closestshopScreen.y, 20, 20);
   }
   
   //for (Agent p: crashpeople){
@@ -158,6 +158,7 @@ void keyPressed() {
     flat = personLocations(landpeople).get(0);
     landpeople.remove(0);
    // println("Crash");
+   //  
     closestToFlat();
     closestBikeshop();
     }
@@ -167,7 +168,6 @@ void closestToFlat(){
   float minDist = 1000000000;
   for(int i = 0; i<personLocations(people).size(); i++){
     float dist = dist(flat.x, flat.y, personLocations(people).get(i).x, personLocations(people).get(i).y);
-    
     if(dist < minDist){
       minDist = dist;
       closest = personLocations(people).get(i);
@@ -179,12 +179,12 @@ void closestToFlat(){
 PVector closestshop = null;
 void closestBikeshop(){
   float minDist = 1000000000;
-//  println("number of things in shopcoords", shopcoords.size());
+  //println("number of things in shopcoords", shopcoords.size());
+  println("flat location: ", flat.x, flat.y);
   for(int j = 0; j<shopcoords.size(); j++){
-    float dist = dist(flat.x, flat.y, shopcoords.get(j).x, shopcoords.get(j).y);
-    println(shopcoords);
-    println("number of things in shopcoords", shopcoords.size());
-    
+    PVector screenLoc = map.getScreenLocation(shopcoords.get(j));
+    println(screenLoc);
+    float dist = dist(flat.x, flat.y, screenLoc.x, screenLoc.y);
     if(dist < minDist){
       minDist = dist;
       closestshop = shopcoords.get(j);
