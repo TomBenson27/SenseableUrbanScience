@@ -93,7 +93,7 @@ void setup() {
   initPopulation(10);
   landinitPopulation(50);
   //initPopulation(500);
-  
+  background(0);
   for(int i = 0; i<waterpolygons.size(); i++){
     waterpolygons.get(i).draw();
   }
@@ -103,7 +103,7 @@ void setup() {
 }
 
 void draw() {
-  
+
   /* background image from OSM */
  // image(background, 0, 0);
   drawGISObjects();
