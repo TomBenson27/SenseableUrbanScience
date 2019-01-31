@@ -210,6 +210,7 @@ void closestToFlat(){
 }
 
 PVector closestshop = null;
+PVector screenclosestshop = null;
 void closestBikeshop(){
   float minDist = 1000000000;
   //println("number of things in shopcoords", shopcoords.size());
@@ -220,6 +221,8 @@ void closestBikeshop(){
     if(dist < minDist){
       minDist = dist;
       closestshop = shopcoords.get(j);
+      screenclosestshop = map.getScreenLocation(shopcoords.get(j));
+      println(screenclosestshop);
     }
   }
     println("Distance of closest bike shop", minDist);

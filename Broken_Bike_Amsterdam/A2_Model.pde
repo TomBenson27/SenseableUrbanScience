@@ -118,7 +118,7 @@ void bikeshoppoiPaths() {
     orig = flat; // Origin is Random Location
     
     // Destination is Random POI
-    dest = closestshop;
+    dest = screenclosestshop;
     
     Path b = new Path(orig, dest);
     b.solve(finder);
@@ -229,7 +229,7 @@ void crashinitPopulation(int count) {
     Path random_bikeshoppath = bikeshoppaths.get(random_index);
     if (random_bikeshoppath.waypoints.size() > 1) {
       int first_waypoint = 0;
-      float random_speed = 1.5;
+      float random_speed = 3;
       PVector loc = random_bikeshoppath.waypoints.get(first_waypoint);
       Agent crashperson = new Agent(loc.x, loc.y, 5, random_speed, random_bikeshoppath.waypoints);
       crashpeople.add(crashperson);
