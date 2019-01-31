@@ -10,14 +10,9 @@ class Polygon{
   }
   
   //Constructor with coordinates
-  Polygon(ArrayList<PVector> coords, int a){
+  Polygon(ArrayList<PVector> coords){
     coordinates = coords;
-    if(a == 1){
-    fill = color(0, 0, 200);
-    }
-    else {
-      fill = color(130,100,130);
-    }
+    fill = color(0, 0, 140);
     makeShape();
   }
   

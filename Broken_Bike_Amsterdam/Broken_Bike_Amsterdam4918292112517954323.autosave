@@ -50,21 +50,17 @@ ArrayList<Way> ways;
 ArrayList<Way> water;
 ArrayList<Polygon> polygons;
 ArrayList<Polygon> waterpolygons;
-ArrayList<Polygon> buildingspolygon;
 PVector flat; 
 ArrayList<PVector> personLocations;
 ArrayList<PVector> shopcoords;
-ArrayList<PVector> waterpointcoords;
 
 void setup() {
-//  size(1000, 650);
-  fullScreen ();
+  size(1000, 650);
   
   /* Intiailize your data structures early in setup */
   map = new MercatorMap(width, height, 52.3722, 52.3649, 4.8694, 4.8893, 0);
   polygons = new ArrayList<Polygon>();
   waterpolygons = new ArrayList<Polygon>();
-  buildingspolygon = new ArrayList<Polygon>();
   ways = new ArrayList<Way>();
   water = new ArrayList<Way>();
   //bikeshops = new ArrayList<BikeShops>(); 
@@ -72,7 +68,6 @@ void setup() {
   shops = new ArrayList<POI>();
   waterpoint = new ArrayList<POI>();
   shopcoords = new ArrayList<PVector>();
-  waterpointcoords = new ArrayList<PVector>();
   
   /* Load in and parse your data in setup -- don't want to do this every frame! */
   loadData();
@@ -107,10 +102,6 @@ void draw() {
   tint(255, 75); // overlaid as an image
   image(network.img, 0, 0);
   
-    /* Draw all polygons */ 
-//  for(int i = 0; i<polygons.size(); i++){
-  // polygons.get(i).draw();}
-  
   /*  Displays the path last calculated in Pathfinder.
    *  The results are overridden everytime findPath() is run.
    *  FORMAT: display(color, alpha)
@@ -134,11 +125,11 @@ void draw() {
   boolean collisionDetection = true;
   for (Agent p: people) {
     p.update(personLocations(people), collisionDetection);
-    p.display(#FFB400, 250);
+    p.display(#FF8C00, 250);
   }
    for (Agent p: landpeople) {
     p.update(personLocations(landpeople), collisionDetection);
-    p.display(#66B2C5, 250);
+    p.display(#FFFF00, 250);
   }
   
   
@@ -155,48 +146,24 @@ void draw() {
   if(closestshop != null){
   fill(0, 255, 255);
   PVector closestshopScreen = map.getScreenLocation(closestshop);
-  ellipse(closestshopScreen.x, closestshopScreen.y, 20, 20);
+  rect(closestshopScreen.x, closestshopScreen.y, 20, 20);
   }
   
-  if(closestcanal != null){
-  fill(0, 255, 255);
-  PVector closestcanalScreen = map.getScreenLocation(closestcanal);
-  ellipse(closestcanalScreen.x, closestcanalScreen.y, 40, 40);
-  }
-  
-  if (crashed == true) {
-  for (Agent p: crashpeople){
-    p.update(personLocations(crashpeople), collisionDetection);
-    p.display(#0000FF, 250);
-  }
-  }
+  //for (Agent p: crashpeople){
+  //  p.update(personLocations(crashpeople), collisionDetection);
+  //  p.display(#0000FF, 250);
+  //}
 }
 
-
-boolean crashed = false;
 void keyPressed() {
-    if (crashed == false) {
-      //PVector flat = new PVector();
-      flat = personLocations(landpeople).get(0);
-      landpeople.remove(0);
-     // println("Crash");
-     //  
-      closestToFlat();
-      closestBikeshop();
-      closestCanal();
-      bikeshoppoiPaths();
-      crashinitPopulation(1);
-      crashed = true;
+    //PVector flat = new PVector();
+    flat = personLocations(landpeople).get(0);
+    landpeople.remove(0);
+   // println("Crash");
+   //  
+    closestToFlat();
+    closestBikeshop();
     }
-}
-    
-void displaycrashpeople(){
-    boolean collisionDetection = true;
-    for (Agent b: crashpeople) {
-    b.update(personLocations(crashpeople), collisionDetection);
-    b.display(#FF0000, 250);
-  }
-}
     
   PVector closest = null;
 void closestToFlat(){
@@ -208,40 +175,22 @@ void closestToFlat(){
       closest = personLocations(people).get(i);
     }
   }
-    println("Distance of closest roboat", minDist);
+  //println(closest);
 }
 
 PVector closestshop = null;
-PVector screenclosestshop = null;
 void closestBikeshop(){
   float minDist = 1000000000;
   //println("number of things in shopcoords", shopcoords.size());
   println("flat location: ", flat.x, flat.y);
   for(int j = 0; j<shopcoords.size(); j++){
     PVector screenLoc = map.getScreenLocation(shopcoords.get(j));
+    println(screenLoc);
     float dist = dist(flat.x, flat.y, screenLoc.x, screenLoc.y);
     if(dist < minDist){
       minDist = dist;
       closestshop = shopcoords.get(j);
-      screenclosestshop = map.getScreenLocation(shopcoords.get(j));
-      println(screenclosestshop);
     }
   }
-    println("Distance of closest bike shop", minDist);
-}
-
-PVector closestcanal = null;
-void closestCanal(){
-  float minDist = 1000000000;
-  //println("number of things in shopcoords", shopcoords.size());
-  println("flat location: ", flat.x, flat.y);
-  for(int j = 0; j<waterpointcoords.size(); j++){
-    PVector screenLoc = map.getScreenLocation(waterpointcoords.get(j));
-    float dist = dist(flat.x, flat.y, screenLoc.x, screenLoc.y);
-    if(dist < minDist){
-      minDist = dist;
-      closestcanal = waterpointcoords.get(j);
-    }
-  }
-  println("Distance of closest canal", minDist);
+ // println(closestshop);
 }
