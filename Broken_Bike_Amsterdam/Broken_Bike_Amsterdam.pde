@@ -54,7 +54,8 @@ ArrayList<PVector> personLocations;
 ArrayList<PVector> shopcoords;
 
 void setup() {
-  size(1000, 650);
+//  size(1000, 650);
+  fullScreen ();
   
   /* Intiailize your data structures early in setup */
   map = new MercatorMap(width, height, 52.3722, 52.3649, 4.8694, 4.8893, 0);
@@ -101,6 +102,10 @@ void draw() {
   tint(255, 75); // overlaid as an image
   image(network.img, 0, 0);
   
+    /* Draw all polygons */ 
+//  for(int i = 0; i<polygons.size(); i++){
+  // polygons.get(i).draw();}
+  
   /*  Displays the path last calculated in Pathfinder.
    *  The results are overridden everytime findPath() is run.
    *  FORMAT: display(color, alpha)
@@ -124,11 +129,11 @@ void draw() {
   boolean collisionDetection = true;
   for (Agent p: people) {
     p.update(personLocations(people), collisionDetection);
-    p.display(#FF8C00, 250);
+    p.display(#FFB400, 250);
   }
    for (Agent p: landpeople) {
     p.update(personLocations(landpeople), collisionDetection);
-    p.display(#FFFF00, 250);
+    p.display(#66B2C5, 250);
   }
   
   
@@ -152,6 +157,8 @@ void draw() {
   //  p.display(#0000FF, 250);
   //}
 }
+
+
 
 void keyPressed() {
     //PVector flat = new PVector();

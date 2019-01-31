@@ -21,14 +21,14 @@ class POI{
     fill = color(0,255,0);
     }
     else 
-    fill(100,100,100);
+    fill(255,50,100);
   }
   
   void draw(){
     PVector screenLocation = map.getScreenLocation(coord);
     fill(fill);
     noStroke();
-    rect(screenLocation.x-2, screenLocation.y-2, 16, 16);
+    ellipse (screenLocation.x-2, screenLocation.y-2, 40, 40);
   }
   
   

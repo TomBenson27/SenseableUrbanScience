@@ -14,13 +14,13 @@ class Way{
     if(waterway!=null && waterway.equals("canal")){
     stroke = color(0, 0, 255);
     }
-    else stroke = color(140, 140, 0);
+    else stroke = color(100, 100, 100,180);
     
   }
   
   //Draw the road
   void draw(){
-    strokeWeight(2);
+    strokeWeight(1);
     stroke(stroke);
     for(int i = 0; i<coordinates.size()-1; i++){
         //iterate through the coordinates and draw lines
