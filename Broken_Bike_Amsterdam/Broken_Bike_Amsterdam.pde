@@ -228,7 +228,7 @@ PVector screenclosestshop = null;
 void closestBikeshop(){
   float minDist = 1000000000;
   //println("number of things in shopcoords", shopcoords.size());
-  println("flat location: ", flat.x, flat.y);
+  //println("flat location: ", flat.x, flat.y);
   for(int j = 0; j<shopcoords.size(); j++){
     PVector screenLoc = map.getScreenLocation(shopcoords.get(j));
     float dist = dist(flat.x, flat.y, screenLoc.x, screenLoc.y);
@@ -236,7 +236,6 @@ void closestBikeshop(){
       minDist = dist;
       closestshop = shopcoords.get(j);
       screenclosestshop = map.getScreenLocation(shopcoords.get(j));
-      println(screenclosestshop);
     }
   }
     println("Distance of closest bike shop", minDist);
@@ -247,7 +246,7 @@ PVector screenclosestcanal = null;
 void closestCanal(){
   float minDist = 1000000000;
   //println("number of things in shopcoords", shopcoords.size());
-  println("flat location: ", flat.x, flat.y);
+  //println("flat location: ", flat.x, flat.y);
   for(int j = 0; j<waterpointcoords.size(); j++){
     PVector screenLoc = map.getScreenLocation(waterpointcoords.get(j));
     float dist = dist(flat.x, flat.y, screenLoc.x, screenLoc.y);
@@ -257,5 +256,5 @@ void closestCanal(){
       screenclosestcanal = map.getScreenLocation(waterpointcoords.get(j));
     }
   }
-  println("Distance of closest canal", minDist);
+  //println("Distance of closest canal", minDist);
 }
