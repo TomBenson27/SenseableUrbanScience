@@ -15,20 +15,20 @@ class POI{
     coord = new PVector(lat, lon);
   //  println(coord);
     if(a == 3){
-    fill = color(#72A746,170);
+    fill = color(155, 0, 225);
     }
     if (a == 4){
-    fill = color(#72A746);
+    fill = color(0,255,0);
     }
     else 
-    fill(#72A746,180);
+    fill(255,50,100);
   }
   
   void draw(){
     PVector screenLocation = map.getScreenLocation(coord);
     fill(fill);
     noStroke();
-    ellipse (screenLocation.x-2, screenLocation.y-2, 30, 30);
+    ellipse (screenLocation.x-2, screenLocation.y-2, 40, 40);
   }
   
   
