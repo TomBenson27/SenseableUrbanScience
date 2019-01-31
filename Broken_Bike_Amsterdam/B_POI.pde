@@ -15,7 +15,7 @@ class POI{
     coord = new PVector(lat, lon);
   //  println(coord);
     if(a == 3){
-    fill = color(255, 0, 225);
+    fill = color(155, 0, 225);
     }
     if (a == 4){
     fill = color(0,255,0);

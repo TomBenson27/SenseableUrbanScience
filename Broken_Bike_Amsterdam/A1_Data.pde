@@ -49,6 +49,8 @@ void parseData(){
     JSONObject properties =  features.getJSONObject(i).getJSONObject("properties");
     String waterway = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("waterway");
     String shop = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("shop");
+    String waterpoly = features.getJSONObject(i).getJSONObject("properties").getJSONObject("tags").getString("natural");
+    
     
     //Make POIs if it's a point
     if(type.equals("Point")){
@@ -84,10 +86,18 @@ void parseData(){
         //Make a PVector and add it
         PVector coordinate = new PVector(lat, lon);
         coords.add(coordinate);
+      
+      if(waterpoly != null && waterpoly.equals("water")){
+        Polygon poly = new Polygon(coords);
+        waterpolygons.add(poly);
+        
       }
+      else {
       //Create the Polygon with the coordinate PVectors
       Polygon poly = new Polygon(coords);
       polygons.add(poly);
+    }
+      }
     }
     
     //Way if a LineString
@@ -116,7 +126,9 @@ void parseData(){
 
 void drawGISObjects() {
   
-
+  for (int i = 0; i<waterpolygons.size(); i++){
+    waterpolygons.get(i).draw();
+  }
 
   
    /* Draw all the ways (roads, sidewalks, etc) */
@@ -135,7 +147,7 @@ void drawGISObjects() {
   for(int i = 0; i<shops.size(); i++){
     shops.get(i).draw();
   }
-    for(int i = 0; i<waterpoint.size(); i++){
-    waterpoint.get(i).draw();
-  }
+    //for(int i = 0; i<waterpoint.size(); i++){
+    //waterpoint.get(i).draw();
+  //}
 }

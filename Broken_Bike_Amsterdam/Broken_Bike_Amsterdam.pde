@@ -49,6 +49,7 @@ ArrayList<POI> waterpoint;
 ArrayList<Way> ways; 
 ArrayList<Way> water;
 ArrayList<Polygon> polygons;
+ArrayList<Polygon> waterpolygons;
 PVector flat; 
 ArrayList<PVector> personLocations;
 ArrayList<PVector> shopcoords;
@@ -61,6 +62,7 @@ void setup() {
   /* Intiailize your data structures early in setup */
   map = new MercatorMap(width, height, 52.3722, 52.3649, 4.8694, 4.8893, 0);
   polygons = new ArrayList<Polygon>();
+  waterpolygons = new ArrayList<Polygon>();
   ways = new ArrayList<Way>();
   water = new ArrayList<Way>();
   //bikeshops = new ArrayList<BikeShops>(); 
@@ -151,13 +153,13 @@ void draw() {
   if(closestshop != null){
   fill(0, 255, 255);
   PVector closestshopScreen = map.getScreenLocation(closestshop);
-  rect(closestshopScreen.x, closestshopScreen.y, 20, 20);
+  ellipse(closestshopScreen.x, closestshopScreen.y, 20, 20);
   }
   
   if(closestcanal != null){
   fill(0, 255, 255);
   PVector closestcanalScreen = map.getScreenLocation(closestcanal);
-  ellipse(closestcanalScreen.x, closestcanalScreen.y, 10, 10);
+  ellipse(closestcanalScreen.x, closestcanalScreen.y, 40, 40);
   }
   
   //for (Agent p: crashpeople){

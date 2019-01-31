@@ -12,7 +12,7 @@ class Polygon{
   //Constructor with coordinates
   Polygon(ArrayList<PVector> coords){
     coordinates = coords;
-    fill = color(100, 0, 0);
+    fill = color(0, 0, 200);
     makeShape();
   }
   
