@@ -174,8 +174,13 @@ void draw() {
   for (Agent p: crashpeople){
     p.update(personLocations(crashpeople), collisionDetection);
     p.display(#0000FF, 250);
+    }
+  for (Agent w: ambulanceboats){
+    w.update(personLocations(ambulanceboats), collisionDetection);
+    w.display(#0000FF, 250);
+    }
   }
-  }
+  
 }
 
 
@@ -192,6 +197,7 @@ void keyPressed() {
       closestCanal();
       bikeshoppoiPaths();
       crashinitPopulation(1);
+      ambulanceboatinitPopulation(1);
       crashed = true;
     }
 }
@@ -237,6 +243,7 @@ void closestBikeshop(){
 }
 
 PVector closestcanal = null;
+PVector screenclosestcanal = null;
 void closestCanal(){
   float minDist = 1000000000;
   //println("number of things in shopcoords", shopcoords.size());
@@ -247,6 +254,7 @@ void closestCanal(){
     if(dist < minDist){
       minDist = dist;
       closestcanal = waterpointcoords.get(j);
+      screenclosestcanal = map.getScreenLocation(waterpointcoords.get(j));
     }
   }
   println("Distance of closest canal", minDist);

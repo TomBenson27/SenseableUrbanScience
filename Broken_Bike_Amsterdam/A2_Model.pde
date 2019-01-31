@@ -10,6 +10,7 @@ Pathfinder finder;
 ArrayList<Path> paths;
 ArrayList<Path> landpaths;
 ArrayList<Path> bikeshoppaths;
+ArrayList<Path> ambulanceboatpaths;
 PVector orig;
 PVector dest;
 
@@ -18,6 +19,7 @@ PVector dest;
 ArrayList<Agent> people;
 ArrayList<Agent> landpeople;
 ArrayList<Agent> crashpeople;
+ArrayList<Agent> ambulanceboats;
 
 void randomNetwork(float cull) {
   //  An example gridded network of width x height (pixels) and node resolution (pixels)
@@ -139,8 +141,7 @@ void poiPaths() {
   paths = new ArrayList<Path>();
   for (int i=0; i<50; i++) {
     //  An example Origin and Desination between which we want to know the shortest path
-    //
-    int orig_index = int(random(waterpoint.size()));
+int orig_index = int(random(waterpoint.size()));
     PVector orig = waterpoint.get(orig_index).coord;
     orig = map.getScreenLocation(orig);
     
@@ -153,6 +154,28 @@ void poiPaths() {
     p.solve(finder);
     paths.add(p);
   }
+  }
+  
+  void ambulanceboatpoiPaths() {
+  /*  An pathfinder object used to derive the shortest path. */
+  finder = new Pathfinder(network);
+  
+  /*  Generate List of Shortest Paths through our network
+   *  FORMAT 1: Path(float x, float y, float l, float w) <- defines 2 random points inside a rectangle
+   *  FORMAT 2: Path(PVector o, PVector d) <- defined by two specific coordinates
+   */
+   
+  ambulanceboatpaths = new ArrayList<Path>();
+  //for (int i=0; i<50; i++) {
+    //  An example Origin and Desination between which we want to know the shortest path
+    orig = closest;
+    
+    // Destination is Random POI
+    dest = screenclosestcanal;
+    
+    Path w = new Path(orig, dest);
+    w.solve(finder);
+    paths.add(w);
   
 }
 
@@ -235,6 +258,25 @@ void crashinitPopulation(int count) {
       crashpeople.add(crashperson);
     }
   }
+}
+
+void ambulanceboatinitPopulation(int count) {
+  /*  An example population that traverses along various paths
+  *  FORMAT: Agent(x, y, radius, speed, path);
+  */
+  ambulanceboats = new ArrayList<Agent>();
+  for (int i=0; i<count; i++) {
+    int random_index = int(random(paths.size()));
+    Path random_path = paths.get(random_index);
+    if (random_path.waypoints.size() > 1) {
+      int first_waypoint = 0;
+      float random_speed = 0.9;
+      PVector loc = random_path.waypoints.get(first_waypoint);
+      Agent ambulanceboat = new Agent(loc.x, loc.y, 5, random_speed, random_path.waypoints);
+      ambulanceboats.add(ambulanceboat);
+    }
+  }
+
 }
 
 ArrayList<PVector> personLocations(ArrayList<Agent> people) {
