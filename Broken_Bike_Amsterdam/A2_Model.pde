@@ -9,6 +9,8 @@ Pathfinder finder;
 //  Object to define and capture a specific origin, destiantion, and path
 ArrayList<Path> paths;
 ArrayList<Path> landpaths;
+ArrayList<Path> bikeshoppaths;
+PVector orig;
 
 
 //  Objects to define agents that navigate our environment
@@ -96,6 +98,33 @@ void landpoiPaths() {
     Path d = new Path(orig, dest);
     d.solve(finder);
     landpaths.add(d);
+  }
+  
+}
+
+void bikeshoppoiPaths() {
+  /*  An pathfinder object used to derive the shortest path. */
+  finder = new Pathfinder(landnetwork);
+  
+  /*  Generate List of Shortest Paths through our network
+   *  FORMAT 1: Path(float x, float y, float l, float w) <- defines 2 random points inside a rectangle
+   *  FORMAT 2: Path(PVector o, PVector d) <- defined by two specific coordinates
+   */
+   
+  bikeshoppaths = new ArrayList<Path>();
+  for (int i=0; i<50; i++) {
+    //  An example Origin and Desination between which we want to know the shortest path
+    //
+    orig = personLocations(landpeople).get(0); // Origin is Random Location
+    
+    // Destination is Random POI
+    int dest_index = int(random(pois.size()));
+    PVector dest = pois.get(dest_index).coord;
+    dest = map.getScreenLocation(dest);
+    
+    Path d = new Path(orig, dest);
+    d.solve(finder);
+    bikeshoppaths.add(d);
   }
   
 }

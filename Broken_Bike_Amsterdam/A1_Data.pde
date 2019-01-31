@@ -47,14 +47,22 @@ void parseData(){
     //Make POIs if it's a point
     if(type.equals("Point")){
       //create new POI
+      ArrayList<PVector> coords = new ArrayList<PVector>();
       float lat = geometry.getJSONArray("coordinates").getFloat(1);
       float lon = geometry.getJSONArray("coordinates").getFloat(0);
       int e = 3;
       int a = 4;
+      PVector coordinate = new PVector(lat, lon);
+        coords.add(coordinate);
 
       if(shop!=null && shop.equals("bicycle")){
+      ArrayList<PVector> shopcoords = new ArrayList<PVector>();
       POI poi = new POI(lat,lon,e);
-        shops.add(poi);   
+      shops.add(poi);
+      for(int j = 0; j<shops.size(); j++){
+        PVector shopcoord = new PVector(lat,lon);
+        shopcoords.add(shopcoord);
+      }
       }
       else {
          POI poi = new POI(lat,lon,a); 

@@ -51,6 +51,7 @@ ArrayList<Way> water;
 ArrayList<Polygon> polygons;
 PVector flat; 
 ArrayList<PVector> personLocations;
+ArrayList<PVector> shopcoords;
 
 void setup() {
   size(1000, 650);
@@ -64,6 +65,7 @@ void setup() {
   pois = new ArrayList<POI>();
   shops = new ArrayList<POI>();
   waterpoint = new ArrayList<POI>();
+  shopcoords = new ArrayList<PVector>();
   
   /* Load in and parse your data in setup -- don't want to do this every frame! */
   loadData();
@@ -140,6 +142,11 @@ void draw() {
   ellipse(closest.x, closest.y, 20, 20);
   }
   
+  if(closestshop != null){
+  fill(0, 255, 255);
+  rect(closestshop.x, closestshop.y, 20, 20);
+  }
+  
   //for (Agent p: crashpeople){
   //  p.update(personLocations(crashpeople), collisionDetection);
   //  p.display(#0000FF, 250);
@@ -149,19 +156,12 @@ void draw() {
 void keyPressed() {
     //PVector flat = new PVector();
     flat = personLocations(landpeople).get(0);
-    println(personLocations(landpeople).get(0));
     landpeople.remove(0);
-    println("Crash");
+   // println("Crash");
     closestToFlat();
+    closestBikeshop();
     }
     
-//void keyPressed() {
-  
-  //randomPaths();
-  //poiPaths();
-  //initPopulation(1000);
-  
-//}
   PVector closest = null;
 void closestToFlat(){
   float minDist = 1000000000;
@@ -173,5 +173,22 @@ void closestToFlat(){
       closest = personLocations(people).get(i);
     }
   }
-  println(closest);
+  //println(closest);
+}
+
+PVector closestshop = null;
+void closestBikeshop(){
+  float minDist = 1000000000;
+//  println("number of things in shopcoords", shopcoords.size());
+  for(int j = 0; j<shopcoords.size(); j++){
+    float dist = dist(flat.x, flat.y, shopcoords.get(j).x, shopcoords.get(j).y);
+    println(shopcoords);
+    println("number of things in shopcoords", shopcoords.size());
+    
+    if(dist < minDist){
+      minDist = dist;
+      closestshop = shopcoords.get(j);
+    }
+  }
+ // println(closestshop);
 }
