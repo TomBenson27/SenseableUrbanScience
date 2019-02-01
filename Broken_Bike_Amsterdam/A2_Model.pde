@@ -284,7 +284,7 @@ void ambulanceboatinitPopulation(int count) {
     Path random_ambulanceboatpath = ambulanceboatpaths.get(random_index);
     if (random_ambulanceboatpath.waypoints.size() > 1) {
       int first_waypoint = 0;
-      float random_speed = 0.6;
+      float random_speed = 0.8;
       PVector loc = random_ambulanceboatpath.waypoints.get(first_waypoint);
       Agent ambulanceboat = new Agent(loc.x, loc.y, 5, random_speed, random_ambulanceboatpath.waypoints);
       ambulanceboats.add(ambulanceboat);
