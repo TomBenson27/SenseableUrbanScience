@@ -247,7 +247,7 @@ class Graph {
     img.beginDraw();
     img.clear();
     
-    println("RENDER");
+    //println("RENDER");
     
     // Formatting
     //

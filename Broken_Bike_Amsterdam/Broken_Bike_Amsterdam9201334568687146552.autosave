@@ -37,8 +37,6 @@
  *
  */
 
-PGraphics b;
-
 // Make a blank map 
 MercatorMap map;
 //PImage background;
@@ -59,11 +57,8 @@ ArrayList<PVector> shopcoords;
 ArrayList<PVector> waterpointcoords;
 
 void setup() {
-  
-  size(1000, 650);
- // fullScreen ();
-  
-  b = createGraphics(width, height);
+//  size(1000, 650);
+  fullScreen ();
   
   /* Intiailize your data structures early in setup */
   map = new MercatorMap(width, height, 52.3722, 52.3649, 4.8694, 4.8893, 0);
@@ -99,29 +94,23 @@ void setup() {
   landinitPopulation(50);
   //initPopulation(500);
   background(0);
-  
- b.beginDraw();
   for(int i = 0; i<waterpolygons.size(); i++){
-    waterpolygons.get(i).drawGraphic();
+    waterpolygons.get(i).draw();
   }
   for(int i = 0; i<buildingspolygon.size(); i++){
-    buildingspolygon.get(i).drawGraphic();
+    buildingspolygon.get(i).draw();
   }
-  
-  b.endDraw();
-  
-  
 }
 
 void draw() {
-  background(0);
-  image(b, 0, 0);
+
   /* background image from OSM */
  // image(background, 0, 0);
   drawGISObjects();
   
   /*  Displays the Graph in grayscale */
-
+  tint(255, 75); // overlaid as an image
+  image(network.img, 0, 0);
   
     /* Draw all polygons */ 
 //  for(int i = 0; i<polygons.size(); i++){
@@ -137,16 +126,12 @@ void draw() {
   /*  Displays the path properties.
    *  FORMAT: display(color, alpha)
    */
-  //for (Path p: paths) {
-  //  p.display(100, 50);
-  //}
-  //for (Path d: landpaths){
-  //  d.display(100,50);
-  //}
-  
-  //tint(255, 60); // overlaid as an image
-//  image(network.img, 0, 0);
-  
+  for (Path p: paths) {
+    p.display(100, 50);
+  }
+  for (Path d: landpaths){
+    d.display(100,50);
+  }
   
   /*  Update and Display the population of agents
    *  FORMAT: display(color, alpha)
@@ -168,15 +153,13 @@ void draw() {
   ellipse(flat.x, flat.y, 40, 40);
   }
   
-  //this was the part that was drawing the green circle
   if(closest != null){
-  fill(#72A746,0);
+  fill(#72A746);
   ellipse(closest.x, closest.y, 20, 20);
   }
   
   if(closestshop != null){
   fill(#72A746);
-  
   PVector closestshopScreen = map.getScreenLocation(closestshop);
   ellipse(closestshopScreen.x, closestshopScreen.y, 80, 80);
   }
@@ -201,28 +184,22 @@ void draw() {
     w.display(#0000FF, 250);
     }
   }
- 
   
 }
 
 
 boolean crashed = false;
 void keyPressed() {
-    println(crashed);
     if (crashed == false) {
       //PVector flat = new PVector();
       flat = personLocations(landpeople).get(0);
       landpeople.remove(0);
-      //people.remove(closest);
-      //println("CLOSEST", closest);
-
+      people.remove(closest);
      // println("Crash");
      //  
       closestToFlat();
       closestBikeshop();
       closestCanal();
-      //people.remove(closestIndex);
-      println("CLOSEST", closest);
       bikeshoppoiPaths();
       ambulanceboatpoiPaths();
       crashinitPopulation(1);
@@ -232,16 +209,13 @@ void keyPressed() {
 }
     
   PVector closest = null;
-  int closestIndex = 0;
-  
 void closestToFlat(){
-  float minDistboat = 1000000000;
+  float minDist = 1000000000;
   for(int i = 0; i<personLocations(people).size(); i++){
     float dist = dist(flat.x, flat.y, personLocations(people).get(i).x, personLocations(people).get(i).y);
-    if(dist < minDistboat){
-      minDistboat = dist;
+    if(dist < minDist){
+      minDist = dist;
       closest = personLocations(people).get(i);
-      closestIndex = i;
       
       //Pink hollow indication circles
       //println(closest);
@@ -251,25 +225,25 @@ void closestToFlat(){
       //ellipse(closest.x, closest.y, 40, 40);
     }
   }
-    println("Distance of closest roboat", minDistboat);
+    println("Distance of closest roboat", minDist);
 }
 
 PVector closestshop = null;
 PVector screenclosestshop = null;
 void closestBikeshop(){
-  float minDistshop = 1000000000;
+  float minDist = 1000000000;
   //println("number of things in shopcoords", shopcoords.size());
   //println("flat location: ", flat.x, flat.y);
   for(int j = 0; j<shopcoords.size(); j++){
     PVector screenLoc = map.getScreenLocation(shopcoords.get(j));
     float dist = dist(flat.x, flat.y, screenLoc.x, screenLoc.y);
-    if(dist < minDistshop){
-      minDistshop = dist;
+    if(dist < minDist){
+      minDist = dist;
       closestshop = shopcoords.get(j);
       screenclosestshop = map.getScreenLocation(shopcoords.get(j));
     }
   }
-    println("Distance of closest bike shop", minDistshop);
+    println("Distance of closest bike shop", minDist);
 }
 
 PVector closestcanal = null;
