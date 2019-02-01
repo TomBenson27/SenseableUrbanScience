@@ -28,12 +28,15 @@ void loadwaterpointdata(){
     Float lat = row.getFloat("LONG");
     Float lon = row.getFloat("LAT");
     PVector waterpointcoord = new PVector(lat, lon);
+    if(map.getScreenLocation(waterpointcoord).x > 0 && map.getScreenLocation(waterpointcoord).x 
+    < width && map.getScreenLocation(waterpointcoord).y > 0 && map.getScreenLocation(waterpointcoord).y < height){
     //println(waterpointcoord);
     waterpointcoords.add(waterpointcoord);
     //println(waterpointcoords);
     int f = 1;
     POI poi = new POI(lat, lon, f);
     waterpoint.add(poi);
+    }
   }
 }
 
@@ -67,7 +70,11 @@ void parseData(){
           POI poi = new POI(lat,lon,e);
           shops.add(poi);
           PVector shopcoord = new PVector(lat,lon);
-          shopcoords.add(shopcoord);
+            if(map.getScreenLocation(shopcoord).x > 0 && map.getScreenLocation(shopcoord).x 
+            < width && map.getScreenLocation(shopcoord).y > 0 && map.getScreenLocation(shopcoord).y < height){
+                shopcoords.add(shopcoord);
+            }
+          
       }
       else {
         POI poi = new POI(lat,lon,a); 
