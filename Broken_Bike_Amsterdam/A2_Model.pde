@@ -88,7 +88,7 @@ void landpoiPaths() {
    */
    
   landpaths = new ArrayList<Path>();
-  for (int i=0; i<50; i++) {
+  for (int i=0; i<100; i++) {
     //  An example Origin and Desination between which we want to know the shortest path
     //
     PVector orig = new PVector(random(1.0)*width, random(1.0)*height); // Origin is Random Location
@@ -139,7 +139,7 @@ void poiPaths() {
    */
    
   paths = new ArrayList<Path>();
-  for (int i=0; i<50; i++) {
+  for (int i=0; i<100; i++) {
     //  An example Origin and Desination between which we want to know the shortest path
 int orig_index = int(random(waterpoint.size()));
     PVector orig = waterpoint.get(orig_index).coord;
@@ -175,7 +175,19 @@ int orig_index = int(random(waterpoint.size()));
     
     Path w = new Path(orig, dest);
     w.solve(finder);
-    ambulanceboatpaths.add(w);
+    if(w.waypoints.size()>1){
+    ambulanceboatpaths.add(w);}
+    else{
+    println("Valid path not found to closest canal, improv path!");
+    for(int i = 0; i< waterpointcoords.size(); i++){
+      w = new Path(orig,  map.getScreenLocation(waterpointcoords.get(i)));
+      w.solve(finder);
+      if(w.waypoints.size() > 1){
+        ambulanceboatpaths.add(w);
+        break;
+      }
+    }
+    }
     println("PATH: ", w.waypoints.size());
   
 }

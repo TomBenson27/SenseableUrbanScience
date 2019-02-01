@@ -221,7 +221,7 @@ void keyPressed() {
       closestToFlat();
       closestBikeshop();
       closestCanal();
-      people.remove(closestIndex);
+      //people.remove(closestIndex);
       println("CLOSEST", closest);
       bikeshoppoiPaths();
       ambulanceboatpoiPaths();
