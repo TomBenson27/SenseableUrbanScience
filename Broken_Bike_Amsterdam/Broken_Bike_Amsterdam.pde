@@ -169,13 +169,14 @@ void draw() {
   }
   
   //this was the part that was drawing the green circle
-//  if(closest != null){
-//  fill(#72A746);
-////  ellipse(closest.x, closest.y, 20, 20);
-//  }
+  if(closest != null){
+  fill(#72A746);
+  ellipse(closest.x, closest.y, 20, 20);
+  }
   
   if(closestshop != null){
   fill(#72A746);
+  
   PVector closestshopScreen = map.getScreenLocation(closestshop);
   ellipse(closestshopScreen.x, closestshopScreen.y, 80, 80);
   }
