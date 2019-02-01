@@ -16,6 +16,11 @@ class Polygon{
     if(a == 1){
     fill = color(#163693,220);
     }
+    
+    if(a == 5){
+    fill = color(#72A746,220);
+    }
+    
     else {
        stroke(0,0,0);
       fill = color(30,30,30);
@@ -42,7 +47,7 @@ class Polygon{
     shape(p, 50, 0);
   }
   
-  void drawGraphic(){
-    b.shape(p, 50, 0);
-  }
+  //void drawGraphic(){
+  //  b.shape(p, 50, 0);
+  //}
 }

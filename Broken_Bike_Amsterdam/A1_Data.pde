@@ -86,6 +86,7 @@ void parseData(){
     if(type.equals("Polygon")){
       int p = 1;
       int o = 2;
+      int t = 5;
       ArrayList<PVector> coords = new ArrayList<PVector>();
       //get the coordinates and iterate through them
       JSONArray coordinates = geometry.getJSONArray("coordinates").getJSONArray(0);
@@ -99,7 +100,13 @@ void parseData(){
       if(waterpoly != null && waterpoly.equals("water")){
         Polygon poly = new Polygon(coords, p);
         waterpolygons.add(poly);  
+        
       }
+      //if(shop!=null && shop.equals("bicycle") && building != null){
+      //  Polygon poly = new Polygon(coords, t);
+      //  bikeshoppolygons.add(poly);
+      //  println(bikeshoppolygons);
+      //}
       
       if(building != null){
        Polygon poly = new Polygon(coords, o);
@@ -158,6 +165,10 @@ void drawGISObjects() {
   for(int i = 0; i<shops.size(); i++){
     shops.get(i).draw();
   }
+ //draw polygons
+ //for(int i = 0; i<bikeshoppolygons.size(); i++){
+ //   bikeshoppolygons.get(i).draw();
+ // }
     //for(int i = 0; i<waterpoint.size(); i++){
     //waterpoint.get(i).draw();
   //}
