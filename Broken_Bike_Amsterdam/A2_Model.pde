@@ -226,7 +226,7 @@ void initPopulation(int count) {
     Path random_path = paths.get(random_index);
     if (random_path.waypoints.size() > 1) {
       int random_waypoint = int(random(random_path.waypoints.size()));
-      float random_speed = 0.3;
+      float random_speed = 0.6;
       PVector loc = random_path.waypoints.get(random_waypoint);
       Agent person = new Agent(loc.x, loc.y, 5, random_speed, random_path.waypoints);
       people.add(person);
@@ -246,7 +246,7 @@ void landinitPopulation(int count) {
     Path random_landpath = landpaths.get(random_index);
     if (random_landpath.waypoints.size() > 1) {
       int random_waypoint = int(random(random_landpath.waypoints.size()));
-      float random_speed = 0.9;
+      float random_speed = 1.5;
       PVector loc = random_landpath.waypoints.get(random_waypoint);
       Agent landperson = new Agent(loc.x, loc.y, 5, random_speed, random_landpath.waypoints);
       landpeople.add(landperson);
@@ -265,7 +265,7 @@ void crashinitPopulation(int count) {
     Path random_bikeshoppath = bikeshoppaths.get(random_index);
     if (random_bikeshoppath.waypoints.size() > 1) {
       int first_waypoint = 0;
-      float random_speed = 0.2;
+      float random_speed = 0.4;
       PVector loc = random_bikeshoppath.waypoints.get(first_waypoint);
       Agent crashperson = new Agent(loc.x, loc.y, 5, random_speed, random_bikeshoppath.waypoints);
       crashpeople.add(crashperson);
@@ -284,7 +284,7 @@ void ambulanceboatinitPopulation(int count) {
     Path random_ambulanceboatpath = ambulanceboatpaths.get(random_index);
     if (random_ambulanceboatpath.waypoints.size() > 1) {
       int first_waypoint = 0;
-      float random_speed = 1.5;
+      float random_speed = 0.6;
       PVector loc = random_ambulanceboatpath.waypoints.get(first_waypoint);
       Agent ambulanceboat = new Agent(loc.x, loc.y, 5, random_speed, random_ambulanceboatpath.waypoints);
       ambulanceboats.add(ambulanceboat);
