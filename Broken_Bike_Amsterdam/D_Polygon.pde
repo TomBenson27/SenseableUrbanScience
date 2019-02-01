@@ -18,7 +18,7 @@ class Polygon{
     }
     else {
        stroke(0,0,0);
-      fill = color(55,55,55);
+      fill = color(30,30,30);
  
     }
     makeShape();
@@ -29,7 +29,7 @@ class Polygon{
     p = createShape();
     p.beginShape();
     p.fill(fill);
-    p.stroke(4);
+    p.stroke(2);
     for(int i = 0; i<coordinates.size(); i++){
         PVector screenLocation = map.getScreenLocation(coordinates.get(i));
         p.vertex(screenLocation.x-55, screenLocation.y);

@@ -139,17 +139,18 @@ void draw() {
   boolean collisionDetection = true;
   for (Agent p: people) {
     p.update(personLocations(people), collisionDetection);
-    p.display(#FFB400, 250);
+    p.display(#FFB400,255);
   }
    for (Agent p: landpeople) {
     p.update(personLocations(landpeople), collisionDetection);
-    p.display(#ffffff,250);
+    p.display(#FFffff,40);
   }
   
+  //breakpoint colour
   
   if(flat != null){
-  fill(0,255,0);
-  ellipse(flat.x, flat.y, 20, 20);
+  fill(#C63232);
+  ellipse(flat.x, flat.y, 40, 40);
   }
   
   if(closest != null){
@@ -158,10 +159,12 @@ void draw() {
   }
   
   if(closestshop != null){
-  fill(0, 255, 255);
+  fill(#72A746);
   PVector closestshopScreen = map.getScreenLocation(closestshop);
   ellipse(closestshopScreen.x, closestshopScreen.y, 80, 80);
   }
+  
+  // colour closest canal
   
   if(closestcanal != null){
   fill(#C63232);
@@ -169,10 +172,12 @@ void draw() {
   ellipse(closestcanalScreen.x, closestcanalScreen.y, 20, 20);
   }
   
+  //crash people 
+  
   if (crashed == true) {
   for (Agent p: crashpeople){
     p.update(personLocations(crashpeople), collisionDetection);
-    p.display(#0000FF, 250);
+    p.display(#C63232, 50);
     }
   for (Agent w: ambulanceboats){
     w.update(personLocations(ambulanceboats), collisionDetection);

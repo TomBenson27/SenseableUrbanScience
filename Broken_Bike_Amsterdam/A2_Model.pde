@@ -252,7 +252,7 @@ void crashinitPopulation(int count) {
     Path random_bikeshoppath = bikeshoppaths.get(random_index);
     if (random_bikeshoppath.waypoints.size() > 1) {
       int first_waypoint = 0;
-      float random_speed = 0.9;
+      float random_speed = 0.2;
       PVector loc = random_bikeshoppath.waypoints.get(first_waypoint);
       Agent crashperson = new Agent(loc.x, loc.y, 5, random_speed, random_bikeshoppath.waypoints);
       crashpeople.add(crashperson);
