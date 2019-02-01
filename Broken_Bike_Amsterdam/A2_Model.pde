@@ -175,7 +175,7 @@ int orig_index = int(random(waterpoint.size()));
     
     Path w = new Path(orig, dest);
     w.solve(finder);
-    paths.add(w);
+    ambulanceboatpaths.add(w);
   
 }
 
@@ -266,13 +266,14 @@ void ambulanceboatinitPopulation(int count) {
   */
   ambulanceboats = new ArrayList<Agent>();
   for (int i=0; i<count; i++) {
-    int random_index = int(random(paths.size()));
-    Path random_path = paths.get(random_index);
-    if (random_path.waypoints.size() > 1) {
+    println(ambulanceboatpaths.size());
+    int random_index = int(random(ambulanceboatpaths.size()));
+    Path random_ambulanceboatpath = ambulanceboatpaths.get(random_index);
+    if (random_ambulanceboatpath.waypoints.size() > 1) {
       int first_waypoint = 0;
-      float random_speed = 0.9;
-      PVector loc = random_path.waypoints.get(first_waypoint);
-      Agent ambulanceboat = new Agent(loc.x, loc.y, 5, random_speed, random_path.waypoints);
+      float random_speed = 1.5;
+      PVector loc = random_ambulanceboatpath.waypoints.get(first_waypoint);
+      Agent ambulanceboat = new Agent(loc.x, loc.y, 5, random_speed, random_ambulanceboatpath.waypoints);
       ambulanceboats.add(ambulanceboat);
     }
   }

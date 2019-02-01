@@ -189,24 +189,18 @@ void keyPressed() {
       //PVector flat = new PVector();
       flat = personLocations(landpeople).get(0);
       landpeople.remove(0);
+      people.remove(closest);
      // println("Crash");
      //  
       closestToFlat();
       closestBikeshop();
       closestCanal();
       bikeshoppoiPaths();
+      ambulanceboatpoiPaths();
       crashinitPopulation(1);
       ambulanceboatinitPopulation(1);
       crashed = true;
     }
-}
-    
-void displaycrashpeople(){
-    boolean collisionDetection = true;
-    for (Agent b: crashpeople) {
-    b.update(personLocations(crashpeople), collisionDetection);
-    b.display(#FF0000, 250);
-  }
 }
     
   PVector closest = null;
@@ -217,6 +211,13 @@ void closestToFlat(){
     if(dist < minDist){
       minDist = dist;
       closest = personLocations(people).get(i);
+      
+      //Pink hollow indication circles
+      //println(closest);
+      //stroke(#ff1493);
+      //strokeWeight(4);
+      //noFill();
+      //ellipse(closest.x, closest.y, 40, 40);
     }
   }
     println("Distance of closest roboat", minDist);
