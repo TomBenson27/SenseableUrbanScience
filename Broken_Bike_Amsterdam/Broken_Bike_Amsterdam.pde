@@ -228,10 +228,10 @@ void keyPressed() {
       crashed = true;
     }
 }
-    
+  Table table;  
   PVector closest = null;
   int closestIndex = 0;
-  
+  float minDistboat = 0;
 void closestToFlat(){
   float minDistboat = 1000000000;
   for(int i = 0; i<personLocations(people).size(); i++){
@@ -240,7 +240,13 @@ void closestToFlat(){
       minDistboat = dist;
       closest = personLocations(people).get(i);
       closestIndex = i;
-      
+
+
+      //String distboat = str(minDistboat);
+      //String [] list = split(distboat, ' ');
+
+      //saveStrings("data/bikeshopdistdist.csv", list);
+
       //Pink hollow indication circles
       //println(closest);
       //stroke(#ff1493);
@@ -249,11 +255,19 @@ void closestToFlat(){
       //ellipse(closest.x, closest.y, 40, 40);
     }
   }
+      Table table;
+      table = loadTable("data/boatdist.csv");
+      
+      TableRow newRow = table.addRow();
+      newRow.setFloat(1, minDistboat);
+
+      saveTable(table,"data/boatdist.csv");
     println("Distance of closest roboat", minDistboat);
 }
 
 PVector closestshop = null;
 PVector screenclosestshop = null;
+float minDistshop = 0;
 void closestBikeshop(){
   float minDistshop = 1000000000;
   //println("number of things in shopcoords", shopcoords.size());
@@ -265,10 +279,20 @@ void closestBikeshop(){
       minDistshop = dist;
       closestshop = shopcoords.get(j);
       screenclosestshop = map.getScreenLocation(shopcoords.get(j));
+
     }
   }
+      Table table;
+      table = loadTable("data/bikeshopdistdist.csv");
+
+      
+      TableRow newRow = table.addRow();
+      newRow.setFloat(1, minDistshop);
+
+      saveTable(table,"data/bikeshopdistdist.csv");
     println("Distance of closest bike shop", minDistshop);
 }
+
 
 PVector closestcanal = null;
 PVector screenclosestcanal = null;
