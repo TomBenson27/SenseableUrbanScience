@@ -60,8 +60,7 @@ ArrayList<PVector> waterpointcoords;
 
 void setup() {
   
-  size(1000, 650);
- // fullScreen ();
+fullScreen ();
   
   b = createGraphics(width, height);
   
@@ -95,7 +94,7 @@ void setup() {
   landpoiPaths();
   
   /* Step 3: Initialize Paths Using ONLY ONE of these methods */
-  initPopulation(10);
+  initPopulation(30);
   landinitPopulation(50);
   //initPopulation(500);
   background(0);
@@ -158,6 +157,7 @@ void draw() {
     p.update(personLocations(landpeople), collisionDetection);
     p.display(#FFffff,40);
   }
+
   
   //breakpoint colour
   
@@ -196,10 +196,10 @@ void draw() {
     }
   for (Agent w: ambulanceboats){
     w.update(personLocations(ambulanceboats), collisionDetection);
-    w.display(#0000FF, 250);
+    w.display(#FF0000, 250);
     }
   }
- 
+
   
 }
 
@@ -219,8 +219,8 @@ void keyPressed() {
       closestToFlat();
       closestBikeshop();
       closestCanal();
-      //people.remove(closestIndex);
-      println("CLOSEST", closest);
+
+   
       bikeshoppoiPaths();
       ambulanceboatpoiPaths();
       crashinitPopulation(1);
@@ -230,7 +230,7 @@ void keyPressed() {
 }
   Table table;  
   PVector closest = null;
-  int closestIndex = 0;
+  Agent closestboat = null;
   float minDistboat = 0;
 void closestToFlat(){
   float minDistboat = 1000000000;
@@ -239,7 +239,8 @@ void closestToFlat(){
     if(dist < minDistboat){
       minDistboat = dist;
       closest = personLocations(people).get(i);
-      closestIndex = i;
+      closestboat= people.get(i);
+      people.remove(closestboat);
 
 
       //String distboat = str(minDistboat);

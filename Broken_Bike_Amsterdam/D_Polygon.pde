@@ -14,18 +14,17 @@ class Polygon{
   Polygon(ArrayList<PVector> coords, int a){
     coordinates = coords;
     if(a == 1){
-    fill = color(#163693,220);
+    fill = color(#163693,255);
     }
     
     if(a == 5){
-    fill = color(#72A746,220);
+    fill = color(55,55,55);
     }
     
-    else {
-       stroke(0,0,0);
-      fill = color(30,30,30);
+    //else 
+    //   stroke(0,0,0);
+    //  fill = color(55,55,55);
  
-    }
     makeShape();
   }
   

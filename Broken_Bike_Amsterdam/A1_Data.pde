@@ -85,7 +85,7 @@ void parseData(){
     //Polygons if polygon
     if(type.equals("Polygon")){
       int p = 1;
-      int o = 2;
+      int o = 5;
       int t = 5;
       ArrayList<PVector> coords = new ArrayList<PVector>();
       //get the coordinates and iterate through them
@@ -156,15 +156,15 @@ void drawGISObjects() {
     for(int i = 0; i<water.size(); i++){
     water.get(i).draw();
   }
+    for(int i = 0; i<shops.size(); i++){
+    shops.get(i).draw();
+  }
 
   /* Draw all POIs */
   //for(int i = 0; i<pois.size(); i++){
     //pois.get(i).draw();
   //}
   //Draw all shops
-  for(int i = 0; i<shops.size(); i++){
-    shops.get(i).draw();
-  }
  //draw polygons
  //for(int i = 0; i<bikeshoppolygons.size(); i++){
  //   bikeshoppolygons.get(i).draw();
