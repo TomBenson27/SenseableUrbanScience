@@ -41,4 +41,8 @@ class Polygon{
   void draw(){
     shape(p, 50, 0);
   }
+  
+  void drawGraphic(){
+    b.shape(p, 50, 0);
+  }
 }

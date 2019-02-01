@@ -247,6 +247,8 @@ class Graph {
     img.beginDraw();
     img.clear();
     
+    println("RENDER");
+    
     // Formatting
     //
     img.noFill();

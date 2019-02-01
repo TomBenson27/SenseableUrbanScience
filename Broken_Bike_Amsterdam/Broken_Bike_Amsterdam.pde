@@ -37,6 +37,8 @@
  *
  */
 
+PGraphics b;
+
 // Make a blank map 
 MercatorMap map;
 //PImage background;
@@ -57,8 +59,11 @@ ArrayList<PVector> shopcoords;
 ArrayList<PVector> waterpointcoords;
 
 void setup() {
-//  size(1000, 650);
+  
+ // size(1000, 650);
   fullScreen ();
+  
+  b = createGraphics(width, height);
   
   /* Intiailize your data structures early in setup */
   map = new MercatorMap(width, height, 52.3722, 52.3649, 4.8694, 4.8893, 0);
@@ -94,23 +99,29 @@ void setup() {
   landinitPopulation(50);
   //initPopulation(500);
   background(0);
+  
+ b.beginDraw();
   for(int i = 0; i<waterpolygons.size(); i++){
-    waterpolygons.get(i).draw();
+    waterpolygons.get(i).drawGraphic();
   }
   for(int i = 0; i<buildingspolygon.size(); i++){
-    buildingspolygon.get(i).draw();
+    buildingspolygon.get(i).drawGraphic();
   }
+  
+  b.endDraw();
+  
+  
 }
 
 void draw() {
-
+  background(0);
+    image(b, 0, 0);
   /* background image from OSM */
  // image(background, 0, 0);
   drawGISObjects();
   
   /*  Displays the Graph in grayscale */
-  tint(255, 75); // overlaid as an image
-  image(network.img, 0, 0);
+
   
     /* Draw all polygons */ 
 //  for(int i = 0; i<polygons.size(); i++){
@@ -126,12 +137,16 @@ void draw() {
   /*  Displays the path properties.
    *  FORMAT: display(color, alpha)
    */
-  for (Path p: paths) {
-    p.display(100, 50);
-  }
-  for (Path d: landpaths){
-    d.display(100,50);
-  }
+  //for (Path p: paths) {
+  //  p.display(100, 50);
+  //}
+  //for (Path d: landpaths){
+  //  d.display(100,50);
+  //}
+  
+  //tint(255, 60); // overlaid as an image
+//  image(network.img, 0, 0);
+  
   
   /*  Update and Display the population of agents
    *  FORMAT: display(color, alpha)
@@ -184,6 +199,7 @@ void draw() {
     w.display(#0000FF, 250);
     }
   }
+ 
   
 }
 
