@@ -60,8 +60,8 @@ ArrayList<PVector> waterpointcoords;
 
 void setup() {
   
- // size(1000, 650);
-  fullScreen ();
+  size(1000, 650);
+ // fullScreen ();
   
   b = createGraphics(width, height);
   
@@ -115,7 +115,7 @@ void setup() {
 
 void draw() {
   background(0);
-    image(b, 0, 0);
+  image(b, 0, 0);
   /* background image from OSM */
  // image(background, 0, 0);
   drawGISObjects();
@@ -168,10 +168,11 @@ void draw() {
   ellipse(flat.x, flat.y, 40, 40);
   }
   
-  if(closest != null){
-  fill(#72A746);
-  ellipse(closest.x, closest.y, 20, 20);
-  }
+  //this was the part that was drawing the green circle
+//  if(closest != null){
+//  fill(#72A746);
+////  ellipse(closest.x, closest.y, 20, 20);
+//  }
   
   if(closestshop != null){
   fill(#72A746);
@@ -206,16 +207,21 @@ void draw() {
 
 boolean crashed = false;
 void keyPressed() {
+    println(crashed);
     if (crashed == false) {
       //PVector flat = new PVector();
       flat = personLocations(landpeople).get(0);
       landpeople.remove(0);
-      people.remove(closest);
+      //people.remove(closest);
+      //println("CLOSEST", closest);
+
      // println("Crash");
      //  
       closestToFlat();
       closestBikeshop();
       closestCanal();
+      people.remove(closestIndex);
+      println("CLOSEST", closest);
       bikeshoppoiPaths();
       ambulanceboatpoiPaths();
       crashinitPopulation(1);
@@ -225,6 +231,8 @@ void keyPressed() {
 }
     
   PVector closest = null;
+  int closestIndex = 0;
+  
 void closestToFlat(){
   float minDist = 1000000000;
   for(int i = 0; i<personLocations(people).size(); i++){
@@ -232,6 +240,7 @@ void closestToFlat(){
     if(dist < minDist){
       minDist = dist;
       closest = personLocations(people).get(i);
+      closestIndex = i;
       
       //Pink hollow indication circles
       //println(closest);

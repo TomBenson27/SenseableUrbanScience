@@ -176,6 +176,7 @@ int orig_index = int(random(waterpoint.size()));
     Path w = new Path(orig, dest);
     w.solve(finder);
     ambulanceboatpaths.add(w);
+    println("PATH: ", w.waypoints.size());
   
 }
 
